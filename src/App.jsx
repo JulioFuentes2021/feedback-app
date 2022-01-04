@@ -4,7 +4,9 @@ import "./App.css";
 
 function App() {
 	return (
-		<div className="bg-red-500">Socando para que se actualize viteeee</div>
+		<div className="bg-red-500">
+			Cesar es el luuk de jong de la programacion
+		</div>
 	);
 }
 
