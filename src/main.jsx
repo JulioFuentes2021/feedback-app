@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./components/FeedbackCard";
+import App from "./components/TitleSquare";
 
 ReactDOM.render(
 	<React.StrictMode>
