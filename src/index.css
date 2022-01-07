@@ -11,3 +11,20 @@
 		rgba(252, 176, 69, 1) 97%
 	);
 }
+
+.gridForButtonsContainer {
+	display: none;
+}
+
+@media screen and (min-width: 1024px) {
+	.gridForButtonsContainer {
+		/* display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 3rem;
+		justify-items: end;
+		/* justify-items: center; */
+		display: flex;
+		justify-content: space-between;
+		/* background-color: blue; */
+	}
+}

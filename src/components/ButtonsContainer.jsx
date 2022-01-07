@@ -3,7 +3,7 @@ import Button from "./Buttons";
 
 const ButtonsContainer = () => {
 	return (
-		<div className="w-72 h-48 p-3">
+		<div className="w-72 h-48 p-3 bg-white">
 			<div>
 				<Button content="All" width="w-12" />
 				<Button content="UI" width="w-12" />

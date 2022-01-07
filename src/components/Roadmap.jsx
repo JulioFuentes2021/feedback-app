@@ -3,7 +3,7 @@ import { FaCircle } from "react-icons/fa";
 
 const Roadmap = () => {
 	return (
-		<div className="flex justify-between w-72 h-48 bg-white p-4">
+		<div className="flex justify-between w-72 h-48 bg-white p-4 xl:my-6">
 			<div className="flex flex-col justify-around">
 				<span className="text-xl font-bold">Roadmap</span>
 				<section>
