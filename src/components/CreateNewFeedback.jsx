@@ -1,15 +1,14 @@
 import React from "react";
 import UtilityButtons from "./UtilityButtons";
 import Back from "./Back";
-import axios from "axios";
+import AddFeedback from "../Axios/addFeedback";
 
 const CreateNewFeedback = props => {
 	const handleSubmit = e => {
 		e.preventDefault();
 		const form = e.target;
-		axios({
-			method: "POST",
-			url: "http://localhost:8000/feedback/add",
+		AddFeedback({
+			url: "/add",
 			data: {
 				title: form.title.value,
 				feature: form.feature.value,
@@ -29,11 +28,6 @@ const CreateNewFeedback = props => {
 				action="feedback/add"
 				className="bg-white p-8 m-8 max-w-7xl"
 				onSubmit={handleSubmit}
-				// onSubmit={e => {
-				// 	e.preventDefault();
-				// 	// const form = e.target;
-				// 	// form.submit();
-				// }}
 			>
 				<article className="mb-5 customBackground text-white font-bold -translate-y-14 w-12 h-12 rounded-full flex justify-center items-center text-2xl">
 					<span>+</span>
