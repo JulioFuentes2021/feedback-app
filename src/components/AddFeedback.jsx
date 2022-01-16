@@ -1,5 +1,6 @@
 import React from "react";
 import { FaLightbulb } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const AddFeedback = () => {
 	return (
@@ -25,12 +26,14 @@ const AddFeedback = () => {
 					</select>
 				</div>
 			</article>
-			<button
-				type="button"
-				className="p-3 w-48 rounded-xl hover:bg-purple-600 outline-none bg-purple-700"
-			>
-				+ Add Feedback
-			</button>
+			<Link to="/add">
+				<button
+					type="button"
+					className="p-3 w-48 rounded-xl hover:bg-purple-600 outline-none bg-purple-700"
+				>
+					+ Add Feedback
+				</button>
+			</Link>
 		</div>
 	);
 };

@@ -5,7 +5,7 @@ import CreateFeedback from "./CreateNewFeedback";
 const CreateFeedbackComponent = () => {
 	return (
 		<div>
-			<div className="bg-red-500">
+			<div className="">
 				<Back />
 				<CreateFeedback />
 			</div>

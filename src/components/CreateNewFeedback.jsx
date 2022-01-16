@@ -20,7 +20,7 @@ const CreateNewFeedback = props => {
 
 	return (
 		<div className="flex flex-col justify-center items-center">
-			<div className="max-w-7xl w-full px-8 py-8">
+			<div className="max-w-7xl w-full px-8">
 				<Back />
 			</div>
 			<form

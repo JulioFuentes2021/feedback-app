@@ -1,14 +1,17 @@
 import React from "react";
 import { FaChevronLeft } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Back = () => {
 	return (
-		<div className="flex items-center">
-			<span>
-				<FaChevronLeft />
-			</span>
-			<span className="mx-4">Go Back</span>
-		</div>
+		<Link to="/feedback-app/">
+			<div className="flex items-center my-5">
+				<span className="cursor-pointer">
+					<FaChevronLeft />
+				</span>
+				<span className="mx-4 cursor-pointer">Go Back</span>
+			</div>
+		</Link>
 	);
 };
 
