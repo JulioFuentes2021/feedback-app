@@ -1,7 +1,7 @@
 import React from "react";
 import { FaComment, FaChevronUp } from "react-icons/fa";
 
-const FeedbackCard = () => {
+const FeedbackCard = props => {
 	return (
 		<article className="bg-white flex items-end sm:items-center p-4 my-6 mx-6 lg:mx-0">
 			<section className="flex flex-col-reverse sm:flex-row">
@@ -12,12 +12,10 @@ const FeedbackCard = () => {
 					<span className="font-semibold mx-1">112</span>
 				</div>
 				<div className="flex flex-col">
-					<span className="font-semibold text-xl">Add tags for solution</span>
-					<span className="my-2 text-gray-600">
-						Easier to watch for solutions based on a specific stack.
-					</span>
+					<span className="font-semibold text-xl">{props.title}</span>
+					<span className="my-2 text-gray-600">{props.description}</span>
 					<button className="rounded-xl mb-2 bg-gray-200 p-2 w-36 font-semibold text-blue-600">
-						Enhacement
+						{props.feature}
 					</button>
 				</div>
 			</section>

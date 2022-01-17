@@ -43,7 +43,15 @@ const AllFeedbacks = () => {
 	return (
 		<div>
 			{allFeedbacks.length ? (
-				allFeedbacks.map(card => <FeedbackCard key={card._id} id={card._id} />)
+				allFeedbacks.map(card => (
+					<FeedbackCard
+						title={card.title}
+						feature={card.feature}
+						description={card.description}
+						key={card._id}
+						id={card._id}
+					/>
+				))
 			) : (
 				<h1>Un mensaje para indicar que no hay feedbacks disponibles</h1>
 			)}
