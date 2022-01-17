@@ -1,7 +1,7 @@
 import React from "react";
 import MenuMobile from "../components/MenuMobile";
 import AddFeedback from "../components/AddFeedback";
-import FeedbackCard from "../components/FeedbackCard";
+import AllFeedbacks from "../components/AllFeedbacks";
 import Status from "../components/Status";
 
 const Index = () => {
@@ -13,16 +13,9 @@ const Index = () => {
 			</div>
 			<div className="col-span-3">
 				<AddFeedback />
-				<div className="">
-					<FeedbackCard />
-					<FeedbackCard />
-					<FeedbackCard />
-					<FeedbackCard />
-					<FeedbackCard />
-					<FeedbackCard />
-					<FeedbackCard />
-					<FeedbackCard />
-				</div>
+				<article>
+					<AllFeedbacks />
+				</article>
 			</div>
 		</div>
 	);
