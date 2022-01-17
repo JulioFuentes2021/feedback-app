@@ -1,8 +1,13 @@
 import React from "react";
 import { FaLightbulb } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { increment } from "../redux/slices/test";
 
 const AddFeedback = () => {
+	const count = useSelector(state => state.counter.value);
+	const dispatch = useDispatch();
+
 	return (
 		<div className="text-xl p-2 text-white flex items-center justify-between  bg-gray-800">
 			<article className="flex">
@@ -10,11 +15,12 @@ const AddFeedback = () => {
 					<section className="mx-4">
 						<FaLightbulb />
 					</section>
-					<section className="font-bold">6 Suggestions</section>
+					<section className="font-bold">{count} Suggestions</section>
 				</div>
 				<div className="mr-4">
 					<span className="text-gray-400">Sort by : </span>
 					<select
+						onClick={() => dispatch(increment())}
 						name="sort"
 						id="options"
 						className="bg-gray-800 font-semibold outline-none"
