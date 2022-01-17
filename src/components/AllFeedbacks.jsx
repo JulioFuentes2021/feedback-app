@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setLoading } from "../redux/slices/loading";
 import { setError } from "../redux/slices/error";
+import LOADING from "./LOADING";
 
 const AllFeedbacks = () => {
 	const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const AllFeedbacks = () => {
 	}
 
 	if (loading) {
-		return "Cargando nasheee!!!";
+		return <LOADING />;
 	}
 
 	return (
