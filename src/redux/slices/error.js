@@ -7,7 +7,7 @@ export const error = createSlice({
 	},
 	reducers: {
 		setError: state => {
-			state.value = !state.value;
+			if (state.value === false) state.value = !state.value;
 		},
 	},
 });
