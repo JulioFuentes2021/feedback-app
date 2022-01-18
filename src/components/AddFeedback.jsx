@@ -11,11 +11,11 @@ const AddFeedback = () => {
 	return (
 		<div className="text-xl p-2 text-white flex flex-col sm:flex-row items-center justify-between  bg-gray-800">
 			<article className="flex my-8">
-				<div className="mx-4 hidden md:flex">
-					<section className="mx-4">
+				<div className=" hidden md:flex">
+					<section className="">
 						<FaLightbulb />
 					</section>
-					<section className="font-bold">{count} Suggestions</section>
+					<section className="font-bold mx-4">{count} Suggestions</section>
 				</div>
 				<div className="mr-4">
 					<span className="text-gray-400">Sort by : </span>
