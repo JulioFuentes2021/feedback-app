@@ -9,8 +9,8 @@ const AddFeedback = () => {
 	const dispatch = useDispatch();
 
 	return (
-		<div className="text-xl p-2 text-white flex items-center justify-between  bg-gray-800">
-			<article className="flex">
+		<div className="text-xl p-2 text-white flex flex-col sm:flex-row items-center justify-between  bg-gray-800">
+			<article className="flex my-8">
 				<div className="mx-4 hidden md:flex">
 					<section className="mx-4">
 						<FaLightbulb />

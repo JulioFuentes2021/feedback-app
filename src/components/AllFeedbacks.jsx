@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setLoading } from "../redux/slices/loading";
 import { setError } from "../redux/slices/error";
 import LOADING from "./LOADING";
+import Error from "./Error";
 
 const AllFeedbacks = () => {
 	const dispatch = useDispatch();
@@ -33,7 +34,7 @@ const AllFeedbacks = () => {
 	// }
 
 	if (error) {
-		return "Ha ocurrido un error...";
+		return <Error />;
 	}
 
 	if (loading) {
