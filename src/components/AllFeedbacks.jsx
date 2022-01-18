@@ -7,6 +7,7 @@ import { setLoading } from "../redux/slices/loading";
 import { setError } from "../redux/slices/error";
 import LOADING from "./LOADING";
 import Error from "./Error";
+import FirstFeedback from "./FirstFeedback";
 
 const AllFeedbacks = () => {
 	const dispatch = useDispatch();
@@ -54,7 +55,7 @@ const AllFeedbacks = () => {
 					/>
 				))
 			) : (
-				<h1>Un mensaje para indicar que no hay feedbacks disponibles</h1>
+				<FirstFeedback />
 			)}
 		</div>
 	);
