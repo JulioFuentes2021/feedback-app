@@ -1,5 +1,5 @@
 import React from "react";
-import Back from "./Back";
+import Back from "../Back";
 import CreateFeedback from "./CreateNewFeedback";
 
 const CreateFeedbackComponent = () => {
