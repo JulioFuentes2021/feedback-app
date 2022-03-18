@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setLoading } from "../../redux/slices/loading";
 import { setError } from "../../redux/slices/error";
-import LOADING from "../LOADING";
+import LOADING from "../Utilities/LOADING";
 import Error from "./Error";
 import FirstFeedback from "./FirstFeedback";
 
