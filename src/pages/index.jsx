@@ -2,7 +2,7 @@ import React from "react";
 import MenuMobile from "../components/MenuMobile";
 import AddFeedback from "../components/AddFeedback";
 import AllFeedbacks from "../components/AllFeedbacks";
-import Status from "../components/Status";
+import Status from "../components/Status/Status";
 
 const Index = () => {
 	return (
