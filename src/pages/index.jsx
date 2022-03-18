@@ -1,8 +1,8 @@
 import React from "react";
-import MenuMobile from "../components/Header/MenuMobile";
-import AddFeedback from "../components/AddFeedbackBar/AddFeedback";
-import AllFeedbacks from "../components/FeedbackCard/AllFeedbacks";
-import Status from "../components/Status/Status";
+import MenuMobile from "@Header/MenuMobile";
+import AddFeedback from "@AddFeedbackBar/AddFeedback";
+import AllFeedbacks from "@FeedbackCard/AllFeedbacks";
+import Status from "@Status/Status";
 
 const Index = () => {
 	return (

@@ -2,7 +2,7 @@ import React from "react";
 import { FaLightbulb } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { increment } from "../../redux/slices/test";
+import { increment } from "@redux/slices/test";
 
 const AddFeedback = () => {
 	const count = useSelector(state => state.counter.value);

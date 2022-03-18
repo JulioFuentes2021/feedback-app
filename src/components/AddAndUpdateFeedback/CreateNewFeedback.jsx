@@ -1,7 +1,7 @@
 import React from "react";
 import UtilityButtons from "../Utilities/UtilityButtons";
-import Back from "../Utilities/Back";
-import AddFeedback from "../../Axios/addFeedback";
+import Back from "@Utilities/Back";
+import AddFeedback from "@Axios/addFeedback";
 
 const CreateNewFeedback = props => {
 	const handleSubmit = e => {

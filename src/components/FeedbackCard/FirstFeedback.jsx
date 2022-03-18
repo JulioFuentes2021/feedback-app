@@ -1,5 +1,5 @@
 import React from "react";
-import FirstFeedbackImage from "../../images/AddFeedback.svg";
+import FirstFeedbackImage from "@images/AddFeedback.svg";
 
 const FirstFeedback = () => {
 	return (
