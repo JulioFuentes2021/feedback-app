@@ -4,12 +4,13 @@ import Index from "../pages/index";
 import AddFeedback from "../components/AddAndUpdateFeedback/CreateNewFeedback";
 import Login from "../components/LoginAndRegister/Login";
 import SignIn from "../components/LoginAndRegister/SignIn";
+import SignInOrLogin from '@LoginAndRegister/FormTemplate';
 
 const RoutesPage = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/feedback-app" element={<Index />} />
+				<Route path="/feedback-app" element={<SignInOrLogin />} />
 				<Route path="add" element={<AddFeedback />} />
 				<Route path="/feedback-app/login" element={<Login />} />
 				<Route path="/feedback-app/sign-in" element={<SignIn />} />
