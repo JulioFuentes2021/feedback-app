@@ -22,7 +22,9 @@ const SignIn = () => {
                 username: form.username.value,
                 password: form.password.value,
             },
-        }).catch(err => setError(!error))
+        })
+            .then(res => console.log("JAJA ha funcionado"))
+            .catch(err => setError(!error))
         // axios.post('http://localhost:8000/auth/login')
 
 
