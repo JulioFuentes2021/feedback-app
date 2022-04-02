@@ -5,6 +5,9 @@ import AllFeedbacks from "@FeedbackCard/AllFeedbacks";
 import Status from "@Status/Status";
 
 const Index = () => {
+
+
+
 	return (
 		<div className="xl:grid xl:grid-cols-4 justify-between lg:p-6 gap-5">
 			<div className="col-span-1">
