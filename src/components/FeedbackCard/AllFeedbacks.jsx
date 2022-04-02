@@ -18,7 +18,7 @@ const AllFeedbacks = () => {
 	const getFeedbacks = async () => {
 		dispatch(setLoading());
 		try {
-			const data = await axios.get("http://localhost:8000/feedback/all");
+			const data = await axios.get("http://localhost:5000/feedback/all");
 			setAllFeedbacks(data.data);
 		} catch (error) {
 			dispatch(setError());

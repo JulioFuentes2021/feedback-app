@@ -14,6 +14,7 @@ const RoutesPage = () => {
 				<Route path="add" element={<AddFeedback />} />
 				<Route path="/feedback-app/login" element={<Login />} />
 				<Route path="/feedback-app/sign-in" element={<SignIn />} />
+				<Route path="/feedback-app/index" element={<Index />} />
 			</Routes>
 		</BrowserRouter>
 	);

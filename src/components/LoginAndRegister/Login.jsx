@@ -19,14 +19,24 @@ const Login = () => {
                 username: form.username.value,
                 password: form.password.value,
             },
-        }).catch(err => setError(!error));
+        })
+            // .then(res => console.log(res))
+            .then(res => {
+                // document.cookie = `token=${res.data.token}`
+                // document.cookie = `name=${res.data.user.username}`
+            })
+            .catch(err => setError(!error));
         // axios.post('http://localhost:8000/auth/login')
 
         form.reset();
     };
 
     return (
-        <FormContainer containerName={"Login"} handleForm={handleForm} setHandleForm={setHandleForm}>
+        <FormContainer
+            containerName={"Login"}
+            handleForm={handleForm}
+            setHandleForm={setHandleForm}
+        >
             <Form
                 handleSubmit={handleSubmit}
                 error={error}

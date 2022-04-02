@@ -2,6 +2,9 @@ import React from "react";
 import { FaBars } from "react-icons/fa";
 
 const MenuMobile = () => {
+	// console.log(document.cookie.split("=")[1].split(";")[0])
+	console.log('Cookies menu mobile', document.cookie)
+
 	return (
 		<section className="lg:hidden flex p-4 items-center justify-between h-20 customBackground">
 			<div className="flex flex-col">
