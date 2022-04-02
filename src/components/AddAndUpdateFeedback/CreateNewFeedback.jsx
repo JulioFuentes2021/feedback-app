@@ -7,6 +7,8 @@ const CreateNewFeedback = props => {
 	const handleSubmit = e => {
 		e.preventDefault();
 		const form = e.target;
+		const token = document.cookie
+
 		AddFeedback({
 			url: "/add",
 			data: {
@@ -14,6 +16,7 @@ const CreateNewFeedback = props => {
 				feature: form.feature.value,
 				description: form.description.value,
 			},
+			headers: { 'authorization': `Bearer ${token}` }
 		});
 		form.reset();
 	};
