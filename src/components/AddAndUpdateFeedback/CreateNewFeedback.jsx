@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import UtilityButtons from "../Utilities/UtilityButtons";
 import Back from "@Utilities/Back";
 import AddFeedback from "@Axios/addFeedback";
@@ -20,6 +20,14 @@ const CreateNewFeedback = props => {
 		});
 		form.reset();
 	};
+
+	const feedbackDetail = useRef()
+
+	const [characters, setCharacters] = useState(0)
+
+	const handleChange = () => {
+		setCharacters(250 - feedbackDetail.current.value.length)
+	}
 
 	return (
 		<div className="flex flex-col justify-center items-center">
@@ -45,6 +53,7 @@ const CreateNewFeedback = props => {
 						consectetur rem nemo nam fuga expedita!
 					</small>
 					<textarea
+						required
 						name="title"
 						id=""
 						placeholder=""
@@ -76,11 +85,16 @@ const CreateNewFeedback = props => {
 						mollitia.
 					</small>
 					<textarea
+						required
+						ref={feedbackDetail}
+						onChange={handleChange}
 						name="description"
+						maxLength={250}
 						id=""
 						placeholder=""
 						className="bg-gray-300 h-32 outline-none p-4 text-black resize-none"
 					></textarea>
+					<span className="my-3">{characters < 1 ? 250 : characters} characters left</span>
 				</section>
 				<section className="flex flex-col items-center sm:flex-row justify-between gap-4">
 					<button
