@@ -11,7 +11,7 @@ const RoutesPage = () => {
 		<BrowserRouter>
 			<Routes>
 				<Route path="/feedback-app" element={<SignInOrLogin />} />
-				<Route path="add" element={<AddFeedback />} />
+				<Route path="/feedback-app/add" element={<AddFeedback />} />
 				<Route path="/feedback-app/login" element={<Login />} />
 				<Route path="/feedback-app/sign-in" element={<SignIn />} />
 				<Route path="/feedback-app/index" element={<Index />} />

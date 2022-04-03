@@ -29,10 +29,12 @@ const AddFeedback = () => {
 							Most Upvotes
 						</option>
 						<option value="LessUpvotes">Less Upvotes</option>
+						<option value="LessUpvotes">Most Comments</option>
+						<option value="LessUpvotes">Less Comments</option>
 					</select>
 				</div>
 			</article>
-			<Link to="/add">
+			<Link to="/feedback-app/add">
 				<button
 					type="button"
 					className="p-3 w-48 rounded-xl hover:bg-purple-600 outline-none bg-purple-700"
