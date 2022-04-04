@@ -25,9 +25,7 @@ const AddFeedback = () => {
 						id="options"
 						className="bg-gray-800 font-semibold outline-none"
 					>
-						<option className="" value="MostUpvotes">
-							Most Upvotes
-						</option>
+						<option value="MostUpvotes">Most Upvotes</option>
 						<option value="LessUpvotes">Less Upvotes</option>
 						<option value="LessUpvotes">Most Comments</option>
 						<option value="LessUpvotes">Less Comments</option>
