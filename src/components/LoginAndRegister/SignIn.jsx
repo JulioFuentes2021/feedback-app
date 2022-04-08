@@ -30,7 +30,7 @@ const SignIn = () => {
                 },
 
                 // authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MjQ0N2UwMjU3MmU1NDY1NDI3ZGQ1NTEiLCJpYXQiOjE2NDg2NTU4NzV9.wrkbL-T0o3PIl8VaaWCPaLbxfqZoNUwigUX0NO5x8cU'
-                headers: { 'authorization': `Bearer ${token}` }
+                headers: { 'authorization': `Bearer 123` }
             })
 
             // .then(res => console.log("JAJA ha funcionado"))
@@ -41,7 +41,7 @@ const SignIn = () => {
             // form.reset();
             navigate('/feedback-app/index')
         } catch (error) {
-            console.log('Ha ocurrido un error')
+            console.log('Ha ocurrido un error', error)
         }
         // form.submit();
         // <Redirect to="/feedback-app" />

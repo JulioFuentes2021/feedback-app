@@ -50,6 +50,8 @@ const AllFeedbacks = () => {
 						title={card.title}
 						feature={card.feature}
 						description={card.description}
+						upvotes={card.upvotes}
+						users={card.test}
 						key={card._id}
 						id={card._id}
 					/>
