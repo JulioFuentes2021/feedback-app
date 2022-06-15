@@ -8,6 +8,7 @@ import { setError } from "@redux/slices/error";
 import LOADING from "@Utilities/LOADING";
 import Error from "./Error";
 import FirstFeedback from "./FirstFeedback";
+import { testingBackendEmitter } from "../../socket/index";
 
 const AllFeedbacks = () => {
 	const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const AllFeedbacks = () => {
 		try {
 			const data = await axios.get("http://localhost:5000/feedback/all");
 			setAllFeedbacks(data.data);
+
 		} catch (error) {
 			dispatch(setError());
 		}
@@ -28,6 +30,7 @@ const AllFeedbacks = () => {
 
 	useEffect(() => {
 		getFeedbacks();
+		// testingBackendEmitter()
 	}, []);
 
 	// if (!allFeedbacks.length) {

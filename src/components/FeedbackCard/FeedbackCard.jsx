@@ -1,6 +1,7 @@
 import React from "react";
 import { FaComment, FaChevronUp } from "react-icons/fa";
 import addUpvote from '../../Axios/addUpvote';
+import { addUpvoteSocket } from '../../socket/index';
 
 const FeedbackCard = props => {
 
@@ -23,6 +24,8 @@ const FeedbackCard = props => {
 			},
 			headers: { 'authorization': `Bearer ${finalCookie}` }
 		})
+
+
 	}
 
 
@@ -32,7 +35,7 @@ const FeedbackCard = props => {
 	return (
 		<article id={props.id} className="bg-white flex items-end sm:items-center p-4 my-6 mx-6 lg:mx-0">
 			<section className="flex flex-col-reverse sm:flex-row">
-				<div onClick={increaseUpvoteCount} className="sm:mx-6 bg-gray-200 w-20 h-10 rounded-xl flex sm:flex-col sm:w-12 sm:h-16 items-center justify-center">
+				<div onClick={() => addUpvoteSocket(increaseUpvoteCount)} className="sm:mx-6 bg-gray-200 w-20 h-10 rounded-xl flex sm:flex-col sm:w-12 sm:h-16 items-center justify-center">
 					<span className="text-blue-600 text-center mx-1">
 						<FaChevronUp />
 					</span>

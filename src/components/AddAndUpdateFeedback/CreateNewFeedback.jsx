@@ -4,21 +4,26 @@ import Back from "@Utilities/Back";
 import AddFeedback from "@Axios/addFeedback";
 
 const CreateNewFeedback = props => {
-	const handleSubmit = e => {
-		e.preventDefault();
-		const form = e.target;
-		const token = document.cookie
+	const handleSubmit = async e => {
+		try {
+			e.preventDefault();
+			const form = e.target;
+			const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
+			const { token } = await response.json()
 
-		AddFeedback({
-			url: "/add",
-			data: {
-				title: form.title.value,
-				feature: form.feature.value,
-				description: form.description.value,
-			},
-			headers: { 'authorization': `Bearer ${token}` }
-		});
-		form.reset();
+			await AddFeedback({
+				url: "/add",
+				data: {
+					title: form.title.value,
+					feature: form.feature.value,
+					description: form.description.value,
+				},
+				headers: { 'authorization': `Bearer ${token}` }
+			});
+			form.reset();
+		} catch (error) {
+			console.log('Feedback failed!!', error)
+		}
 	};
 
 	const feedbackDetail = useRef()

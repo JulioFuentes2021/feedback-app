@@ -3,7 +3,7 @@ import login from "@Axios/login";
 import FormContainer from "./FormContainer";
 import Form from "./Form";
 
-const Login = () => {
+const Login = ({ itIsLogin, setItIsLogin }) => {
     const [handleForm, setHandleForm] = useState(false);
     const [error, setError] = useState(false);
 
@@ -13,22 +13,33 @@ const Login = () => {
         console.log(form.username.value);
         console.log(form.password.value);
 
-        login({
-            url: "/login",
-            data: {
-                username: form.username.value,
-                password: form.password.value,
-            },
-        })
-            // .then(res => console.log(res))
-            .then(res => {
-                // document.cookie = `token=${res.data.token}`
-                // document.cookie = `name=${res.data.user.username}`
-            })
-            .catch(err => setError(!error));
-        // axios.post('http://localhost:8000/auth/login')
+        try {
+            const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
+            const { token } = await response.json()
 
-        form.reset();
+
+            await login({
+                url: "/login",
+                data: {
+                    username: form.username.value,
+                    password: form.password.value,
+                },
+                headers: { 'authorization': `Bearer ${token}` }
+            })
+            //     // .then(res => console.log(res))
+            //     .then(res => {
+            //         // document.cookie = `token=${res.data.token}`
+            //         // document.cookie = `name=${res.data.user.username}`
+            //     })
+            //     .catch(err => setError(!error));
+            // // axios.post('http://localhost:8000/auth/login')
+
+            form.reset();
+            setItIsLogin(!itIsLogin);
+            console.log('siuu')
+        } catch (error) {
+            console.log('Error desde login', error)
+        }
     };
 
     return (
