@@ -2,30 +2,46 @@ import React from "react";
 import { FaComment, FaChevronUp } from "react-icons/fa";
 import addUpvote from '../../Axios/addUpvote';
 import { addUpvoteSocket } from '../../socket/index';
+import io from "socket.io-client"
+import { connection, sockets } from "../../socket/index";
+
+// const socket = io.connect("http://localhost:5000", {
+// 	extraHeaders: {
+// 		Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNGEzOTE0ZmZlODE3ODc4M2IxNDM2OSIsImlhdCI6MTY1NTI1NjIwMiwiZXhwIjo0MjQ3MjU2MjAyfQ.RibMYWjJdl8BjlqKaLtmSYakRLf7cQkqNof6hHlrUF0"
+// 	}
+// });
 
 const FeedbackCard = props => {
 
 	console.log(props.users)
 
-	const increaseUpvoteCount = () => {
+	const increaseUpvoteCount = async () => {
 		//This is the function to get a cookie
-		const allCookies = document.cookie.split(';')
-		// console.log(t[0].split('=')[1])
-		const cookieIndex = allCookies.map((t) => t.split('=').findIndex((t) => t === 'token'))
-		const splitCookie = allCookies.map((t) => t.split('='))
-		const finalCookie = splitCookie[0][cookieIndex[0] + 1]
-		console.log(finalCookie)
+		// const allCookies = document.cookie.split(';')
+		// // console.log(t[0].split('=')[1])
+		// const cookieIndex = allCookies.map((t) => t.split('=').findIndex((t) => t === 'token'))
+		// const splitCookie = allCookies.map((t) => t.split('='))
+		// const finalCookie = splitCookie[0][cookieIndex[0] + 1]
+		// console.log(finalCookie)
 
+		const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
+		const { token } = await response.json();
 
 		addUpvote({
 			url: '/',
 			data: {
 				id: props.id,
 			},
-			headers: { 'authorization': `Bearer ${finalCookie}` }
+			headers: { 'authorization': `Bearer ${token}` }
 		})
-
-
+		// const socket = io.connect("http://localhost:5000", {
+		// 	extraHeaders: {
+		// 		Authorization: `Bearer ${token}`
+		// 	}
+		// });
+		// socket.emit("test", { message: "vote added" })
+		console.log('Socket', sockets)
+		sockets.emit("test", { message: "vote added" })
 	}
 
 
@@ -35,7 +51,8 @@ const FeedbackCard = props => {
 	return (
 		<article id={props.id} className="bg-white flex items-end sm:items-center p-4 my-6 mx-6 lg:mx-0">
 			<section className="flex flex-col-reverse sm:flex-row">
-				<div onClick={() => addUpvoteSocket(increaseUpvoteCount)} className="sm:mx-6 bg-gray-200 w-20 h-10 rounded-xl flex sm:flex-col sm:w-12 sm:h-16 items-center justify-center">
+				{/* <div onClick={() => addUpvoteSocket(increaseUpvoteCount)} className="sm:mx-6 bg-gray-200 w-20 h-10 rounded-xl flex sm:flex-col sm:w-12 sm:h-16 items-center justify-center"> */}
+				<div onClick={increaseUpvoteCount} className="sm:mx-6 bg-gray-200 w-20 h-10 rounded-xl flex sm:flex-col sm:w-12 sm:h-16 items-center justify-center">
 					<span className="text-blue-600 text-center mx-1">
 						<FaChevronUp />
 					</span>
