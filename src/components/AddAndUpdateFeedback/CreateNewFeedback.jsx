@@ -2,24 +2,30 @@ import React, { useRef, useState } from "react";
 import UtilityButtons from "../Utilities/UtilityButtons";
 import Back from "@Utilities/Back";
 import AddFeedback from "@Axios/addFeedback";
+import { sockets } from "../../socket";
 
 const CreateNewFeedback = props => {
-	const handleSubmit = async e => {
+	const handleSubmit = e => {
 		try {
 			e.preventDefault();
 			const form = e.target;
-			const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
-			const { token } = await response.json()
+			// const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
+			// const { token } = await response.json()
 
-			await AddFeedback({
-				url: "/add",
-				data: {
-					title: form.title.value,
-					feature: form.feature.value,
-					description: form.description.value,
-				},
-				headers: { 'authorization': `Bearer ${token}` }
-			});
+			// await AddFeedback({
+			// 	url: "/add",
+			// 	data: {
+			// 		title: form.title.value,
+			// 		feature: form.feature.value,
+			// 		description: form.description.value,
+			// 	},
+			// 	headers: { 'authorization': `Bearer ${token}` }
+			// });
+			sockets.emit("addFeedback", {
+				title: form.title.value,
+				feature: form.feature.value,
+				description: form.description.value,
+			})
 			form.reset();
 		} catch (error) {
 			console.log('Feedback failed!!', error)
