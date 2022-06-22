@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaLightbulb } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { increment } from "@redux/slices/test";
+import { sockets } from "../../socket/index";
 
 const AddFeedback = () => {
-	const count = useSelector(state => state.counter.value);
+	// const count = useSelector(state => state.counter.value);
 	const dispatch = useDispatch();
+	const [suggestions, setSuggestions] = useState();
+
+	useEffect(() => {
+
+		// sockets.emit("getSuggestions");
+		sockets.on("suggestions", (data) => {
+			console.log(data)
+			setSuggestions(data);
+		})
+
+		return () => {
+			sockets.off("suggestions")
+		}
+	}, [])
 
 	return (
 		<div className="text-xl p-2 text-white flex flex-col sm:flex-row items-center justify-between  bg-gray-800">
@@ -15,7 +30,7 @@ const AddFeedback = () => {
 					<section className="">
 						<FaLightbulb />
 					</section>
-					<section className="font-bold mx-4">{count} Suggestions</section>
+					<section className="font-bold mx-4">{suggestions} Suggestions</section>
 				</div>
 				<div className="mr-4">
 					<span className="text-gray-400">Sort by : </span>

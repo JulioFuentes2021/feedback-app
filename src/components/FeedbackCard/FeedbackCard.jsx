@@ -13,35 +13,20 @@ import { connection, sockets } from "../../socket/index";
 
 const FeedbackCard = props => {
 
-	console.log(props.users)
-
 	const increaseUpvoteCount = async () => {
-		//This is the function to get a cookie
-		// const allCookies = document.cookie.split(';')
-		// // console.log(t[0].split('=')[1])
-		// const cookieIndex = allCookies.map((t) => t.split('=').findIndex((t) => t === 'token'))
-		// const splitCookie = allCookies.map((t) => t.split('='))
-		// const finalCookie = splitCookie[0][cookieIndex[0] + 1]
-		// console.log(finalCookie)
+		// const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
+		// const { token } = await response.json();
 
-		const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
-		const { token } = await response.json();
-
-		addUpvote({
-			url: '/',
-			data: {
-				id: props.id,
-			},
-			headers: { 'authorization': `Bearer ${token}` }
-		})
-		// const socket = io.connect("http://localhost:5000", {
-		// 	extraHeaders: {
-		// 		Authorization: `Bearer ${token}`
-		// 	}
-		// });
-		// socket.emit("test", { message: "vote added" })
-		console.log('Socket', sockets)
-		sockets.emit("test", { message: "vote added" })
+		// addUpvote({
+		// 	url: '/',
+		// 	data: {
+		// 		id: props.id,
+		// 	},
+		// 	headers: { 'authorization': `Bearer ${token}` }
+		// })
+		// console.log('Socket', sockets)
+		console.log(props.id)
+		sockets.emit("test", { id: props.id })
 	}
 
 
