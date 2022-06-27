@@ -21,8 +21,9 @@ const Login = ({ itIsLogin, setItIsLogin }) => {
             await login({
                 url: "/login",
                 data: {
-                    username: form.username.value,
+                    // username: form.username.value,
                     password: form.password.value,
+                    username: form.mail.value,
                 },
                 headers: { 'authorization': `Bearer ${token}` }
             })

@@ -22,15 +22,19 @@ const SignIn = () => {
         console.log(token)
 
         try {
+            const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
+            const { token } = await response.json()
+
             await signIn({
                 url: "/sign-in",
                 data: {
                     username: form.username.value,
                     password: form.password.value,
+                    mail: form.mail.value
                 },
 
                 // authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MjQ0N2UwMjU3MmU1NDY1NDI3ZGQ1NTEiLCJpYXQiOjE2NDg2NTU4NzV9.wrkbL-T0o3PIl8VaaWCPaLbxfqZoNUwigUX0NO5x8cU'
-                headers: { 'authorization': `Bearer 123` }
+                headers: { 'authorization': `Bearer ${token}` }
             })
 
             // .then(res => console.log("JAJA ha funcionado"))

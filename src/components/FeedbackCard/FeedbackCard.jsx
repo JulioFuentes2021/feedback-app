@@ -4,6 +4,7 @@ import addUpvote from '../../Axios/addUpvote';
 import { addUpvoteSocket } from '../../socket/index';
 import io from "socket.io-client"
 import { connection, sockets } from "../../socket/index";
+import { Link } from "react-router-dom";
 
 // const socket = io.connect("http://localhost:5000", {
 // 	extraHeaders: {
@@ -55,7 +56,9 @@ const FeedbackCard = props => {
 				<span className="mx-2 text-gray-300 text-2xl">
 					<FaComment />
 				</span>
-				<span className="font-semibold">2</span>
+				<Link to={`/feedback-app/comment/${props.id}`}>
+					<span className="font-semibold">2</span>
+				</Link>
 			</section>
 		</article>
 	);

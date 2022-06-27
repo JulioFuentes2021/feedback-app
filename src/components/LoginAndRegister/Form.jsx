@@ -11,11 +11,25 @@ const Form = ({ handleSubmit, error, isSignIn, formName }) => {
         >
             {isSignIn && <p className={`${error ? "visible" : "invisible"} text-xl text-red-500`}>Username or password incorrect</p>}
             {" "}
+            <div className="overflow-hidden flex flex-col items-center justify-center bg-gray-200 w-72 h-72 min-w-[19rem] max-w-xs rounded-full cursor-pointer">
+                <div className="text-xl text-black relative top-16 m-auto">Click here to add avatar</div>
+                <div className="translate-y-8 rounded-full w-20 h-20 bg-gray-300 my-8"></div>
+                <div className="translate-y-8 rounded-full w-56 h-44 bg-gray-300"></div>
+            </div>
             <input
                 className="max-w-xl outline-none w-full p-2 my-2 bg-transparent border-b border-white focus:border-purple-800 transition-b ease duration-2000"
                 type="text"
                 placeholder="Username"
                 name="username"
+                autoFocus
+                required
+            // value="Ronaldo"
+            />
+            <input
+                className="max-w-xl outline-none w-full p-2 my-2 bg-transparent border-b border-white focus:border-purple-800 transition-b ease duration-2000"
+                type="text"
+                placeholder="Mail"
+                name="mail"
                 autoFocus
                 required
             // value="Ronaldo"

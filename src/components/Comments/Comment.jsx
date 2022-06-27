@@ -1,8 +1,8 @@
 import React from "react";
 
-const Comment = () => {
+const Comment = ({ text }) => {
 	return (
-		<article className="p-4 flex flex-col sm:flex-row bg-white">
+		<article className="p-4 flex flex-col bg-white">
 			<img
 				src="https://img.search.brave.com/hFZAFcFYrNLR9_bCKuDB7g-N8De4Kmfb9Hu8rtxSQyE/fit/632/225/ce/1/aHR0cHM6Ly90c2U0/LmV4cGxpY2l0LmJp/bmcubmV0L3RoP2lk/PU9JUC5jdGFaSTla/al9LNHBDMVJIcVFE/Z2pBSGFGaiZwaWQ9/QXBp"
 				alt=""
@@ -22,10 +22,7 @@ const Comment = () => {
 				</section>
 				<section className="my-7">
 					<p className="text-gray-600">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore
-						similique incidunt modi. Aperiam sed consectetur similique optio
-						ullam possimus odit consequuntur nesciunt debitis aspernatur soluta
-						commodi eum ducimus, fuga ad!
+						{text}
 					</p>
 				</section>
 			</div>

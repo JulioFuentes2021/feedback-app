@@ -1,9 +1,9 @@
 import React from "react";
 
-const CommentsBar = () => {
+const CommentsBar = ({ total }) => {
 	return (
 		<div className="bg-white p-4">
-			<span className="font-bold">4 Comments</span>
+			<span className="font-bold">{total} Comments</span>
 		</div>
 	);
 };
