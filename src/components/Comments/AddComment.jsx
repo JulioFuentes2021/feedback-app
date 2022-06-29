@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import addCommentAction from "../../Axios/addComment";
 import { sockets } from "../../socket";
 
-const AddComment = ({ feedbackId }) => {
+const AddComment = ({ feedbackId, reply, replyId, mail }) => {
 	const commentContent = useRef();
 
 	const addComment = async () => {
@@ -23,14 +23,17 @@ const AddComment = ({ feedbackId }) => {
 		// 		comment: commentContent.current.value
 		// 	}
 		// })
-		const test = feedbackId
 		sockets.emit("getSuggestions", { id: feedbackId, comment: commentContent.current.value })
 
 		return () => {
 			sockets.off("getSuggestions")
 		}
 
-	}
+	};
+
+	const addReply = () => {
+		sockets.emit("addReply", { feedbackId, replyId, reply: commentContent.current.value, mail })
+	};
 
 	return (
 		<div className="flex flex-col p-6 bg-white">
@@ -44,11 +47,11 @@ const AddComment = ({ feedbackId }) => {
 			<div className="flex justify-between items-center">
 				<span className="text-gray-500">250 Characters left</span>
 				<button
-					onClick={addComment}
+					onClick={!reply ? addComment : addReply}
 					type="button"
 					className="p-3 w-48 cursor-pointer rounded-xl text-white font-semibold hover:bg-purple-600 outline-none bg-purple-700"
 				>
-					Post Comment
+					{!reply ? 'Post Comment' : 'Reply'}
 				</button>
 			</div>
 		</div>

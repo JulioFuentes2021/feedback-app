@@ -1,6 +1,17 @@
 import React from "react";
 
-const Comment = ({ text }) => {
+const Comment = ({
+	reply,
+	setReply,
+	replyId,
+	setReplyId,
+	text,
+	username,
+	mail,
+	id,
+	getUserMail
+}) => {
+
 	return (
 		<article className="p-4 flex flex-col bg-white">
 			<img
@@ -12,18 +23,23 @@ const Comment = ({ text }) => {
 				<section className="flex justify-between items-center">
 					<div className="flex items-center">
 						<div className="flex flex-col">
-							<span className="font-bold">Elijah Moss</span>
-							<span className="text-gray-700">@test_julio</span>
+							<span className="font-bold">{username}</span>
+							<span className="text-gray-700">{mail}</span>
 						</div>
 					</div>
-					<span className="text-blue-600 font-semibold cursor-pointer">
+					<span
+						onClick={() => {
+							setReply(!reply);
+							setReplyId(id);
+							getUserMail(mail)
+						}}
+						className="text-blue-600 font-semibold cursor-pointer"
+					>
 						Reply
 					</span>
 				</section>
 				<section className="my-7">
-					<p className="text-gray-600">
-						{text}
-					</p>
+					<p className="text-gray-600">{text}</p>
 				</section>
 			</div>
 		</article>
