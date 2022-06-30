@@ -5,6 +5,8 @@ import CommentsBar from "../components/Comments/CommentsBar";
 import FeedbackCard from "../components/FeedbackCard/FeedbackCard";
 import { useParams } from "react-router-dom";
 import { sockets } from "../socket/index";
+import Back from '@Utilities/Back';
+import Buttons from '@Utilities/Buttons';
 
 const Comment = () => {
     const { id } = useParams();
@@ -38,7 +40,16 @@ const Comment = () => {
     }, []);
 
     return (
-        <div className="flex flex-col justify-between h-screen">
+        <div className="flex flex-col justify-between h-screen sm:px-20">
+            <div className="flex justify-between items-center px-5">
+                <Back />
+                <button
+                    type="button"
+                    className="p-3 h-12 w-48 cursor-pointer rounded-xl text-white font-semibold hover:bg-purple-600 outline-none bg-purple-700"
+                >
+                    Edit Feedback
+                </button>
+            </div>
             <FeedbackCard
                 title={feedback.title}
                 feature={feedback.feature}
