@@ -14,8 +14,8 @@ const Login = ({ itIsLogin, setItIsLogin }) => {
         console.log(form.password.value);
 
         try {
-            const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
-            const { token } = await response.json()
+            // const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
+            // const { token } = await response.json()
 
 
             await login({
@@ -25,7 +25,7 @@ const Login = ({ itIsLogin, setItIsLogin }) => {
                     password: form.password.value,
                     username: form.mail.value,
                 },
-                headers: { 'authorization': `Bearer ${token}` }
+                // headers: { 'authorization': `Bearer ${token}` }
             })
             //     // .then(res => console.log(res))
             //     .then(res => {

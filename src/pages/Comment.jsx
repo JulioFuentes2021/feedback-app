@@ -13,6 +13,7 @@ const Comment = () => {
     const [reply, setReply] = useState(false);
     const [replyId, setReplyId] = useState();
     const [mail, setMail] = useState();
+    const [counter, setCounter] = useState(0);
 
     useEffect(() => {
         const getComments = async commentId => {
@@ -52,6 +53,11 @@ const Comment = () => {
                     total={
                         Object.keys(feedback).length && Object.keys(feedback.comment).length
                     }
+                // total={
+                //     Object.keys(feedback).length && feedback.comment.forEach((element) => {
+                //         return element.replies.length
+                //     })
+                // }
                 />
                 {Object.keys(feedback).length &&
                     Object.keys(feedback.comment).length ? (
@@ -71,7 +77,7 @@ const Comment = () => {
                             <div>
                                 {
                                     comment.replies.map(replies => (
-                                        <div className="pl-20">
+                                        <div className="pl-20" key={replies._id}>
                                             <CommentComponent
                                                 id={comment._id}
                                                 reply={reply}
