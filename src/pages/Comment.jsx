@@ -50,15 +50,17 @@ const Comment = () => {
                     Edit Feedback
                 </button>
             </div>
-            <FeedbackCard
-                title={feedback.title}
-                feature={feedback.feature}
-                description={feedback.description}
-                upvotes={feedback.upvotes}
-                users={12}
-                key={feedback._id}
-                id={feedback._id}
-            />
+            <div className="mx-6 sm:mx-0">
+                <FeedbackCard
+                    title={feedback.title}
+                    feature={feedback.feature}
+                    description={feedback.description}
+                    upvotes={feedback.upvotes}
+                    users={12}
+                    key={feedback._id}
+                    id={feedback._id}
+                />
+            </div>
             <div className="flex justify-center flex-col">
                 <CommentsBar
                     total={
