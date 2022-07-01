@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import React from 'react';
 import Login from './Login';
 import SignIn from './SignIn';
@@ -68,9 +68,19 @@ const FormTemplate = () => {
 
     return (
         <>
-            {itIsLogin ? <Index /> : <div className="w-full h-screen flex items-center justify-around">
-                <Login itIsLogin={itIsLogin} setItIsLogin={setItIsLogin} />
-                <SignIn />
+            {itIsLogin ? <Index /> : <div className="w-full h-screen flex flex-col items-center justify-center">
+                {/* <Login itIsLogin={itIsLogin} setItIsLogin={setItIsLogin} />
+                <SignIn /> */}
+                <h2 className="text-center text-3xl my-10">Welcome to your Feedback Board</h2>
+                <div className="">
+                    <Link to="/feedback-app/login">
+                        <span className="underline mx-10 text-2xl">Login</span>
+                    </Link>
+                    <Link to="/feedback-app/sign-in">
+                        <span className="underline mx-10 text-2xl">Sign In</span>
+                    </Link>
+                </div>
+
             </div>}
 
         </>

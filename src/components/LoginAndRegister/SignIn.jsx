@@ -43,7 +43,7 @@ const SignIn = () => {
 
 
             // form.reset();
-            navigate('/feedback-app/index')
+            navigate('/feedback-app/login')
         } catch (error) {
             console.log('Ha ocurrido un error', error)
         }

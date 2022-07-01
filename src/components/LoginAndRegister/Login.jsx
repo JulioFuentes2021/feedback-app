@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import login from "@Axios/login";
+import { useNavigate } from "react-router-dom";
 import FormContainer from "./FormContainer";
 import Form from "./Form";
 
 const Login = ({ itIsLogin, setItIsLogin }) => {
     const [handleForm, setHandleForm] = useState(false);
     const [error, setError] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -36,8 +38,9 @@ const Login = ({ itIsLogin, setItIsLogin }) => {
             // // axios.post('http://localhost:8000/auth/login')
 
             form.reset();
-            setItIsLogin(!itIsLogin);
-            console.log('siuu')
+            navigate('/feedback-app/index')
+            // setItIsLogin(!itIsLogin);
+            // console.log('siuu')
         } catch (error) {
             console.log('Error desde login', error)
         }
