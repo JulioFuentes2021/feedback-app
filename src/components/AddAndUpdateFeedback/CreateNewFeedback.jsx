@@ -5,6 +5,7 @@ import AddFeedback from "@Axios/addFeedback";
 import { sockets } from "../../socket";
 
 const CreateNewFeedback = props => {
+
 	const handleSubmit = e => {
 		try {
 			e.preventDefault();

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const Form = ({ handleSubmit, error, isSignIn, formName }) => {
     return (
@@ -9,10 +9,19 @@ const Form = ({ handleSubmit, error, isSignIn, formName }) => {
             autoComplete="off"
             onSubmit={handleSubmit}
         >
-            {isSignIn && <p className={`${error ? "visible" : "invisible"} text-xl text-red-500`}>Username or password incorrect</p>}
-            {" "}
+            {
+                <p
+                    className={`${error.error ? "visible" : "invisible"
+                        } text-center mb-8 text-xl text-red-500`}
+                >
+                    <span className="text-green-500 uppercase">{error.firstWord}</span>{" "}
+                    {error.message}
+                </p>
+            }{" "}
             <div className="overflow-hidden flex flex-col items-center justify-center bg-gray-200 w-72 h-72 min-w-[19rem] max-w-xs rounded-full cursor-pointer">
-                <div className="text-xl text-black relative top-16 m-auto">Click here to add avatar</div>
+                <div className="text-xl text-black relative top-16 m-auto">
+                    Click here to add avatar
+                </div>
                 <div className="translate-y-8 rounded-full w-20 h-20 bg-gray-300 my-8"></div>
                 <div className="translate-y-8 rounded-full w-56 h-44 bg-gray-300"></div>
             </div>
@@ -33,8 +42,7 @@ const Form = ({ handleSubmit, error, isSignIn, formName }) => {
                 autoFocus
                 required
             // value="Ronaldo"
-            />
-            {" "}
+            />{" "}
             <input
                 className="max-w-xl outline-none w-full p-2 my-2 bg-transparent border-b border-white focus:border-purple-800 transition-b ease duration-2000"
                 type="password"
@@ -43,9 +51,14 @@ const Form = ({ handleSubmit, error, isSignIn, formName }) => {
                 required
             // value="canales"
             />
-            <button className="max-w-xl my-5 bg-purple-800 w-full p-3 hover:bg-purple-900" type="submit">{formName}</button>
+            <button
+                className="max-w-xl my-5 bg-purple-800 w-full p-3 hover:bg-purple-900"
+                type="submit"
+            >
+                {formName}
+            </button>
         </form>
-    )
-}
+    );
+};
 
-export default Form
+export default Form;

@@ -10,7 +10,7 @@ const SignIn = () => {
     const signInButton = useRef(null)
 
     const [handleForm, setHandleForm] = useState(false)
-    const [error, setError] = useState(false)
+    const [error, setError] = useState({ error: false, message: null, firstWord: null })
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -25,7 +25,7 @@ const SignIn = () => {
             // const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
             // const { token } = await response.json()
 
-            await signIn({
+            const response = await signIn({
                 url: "/sign-in",
                 data: {
                     username: form.username.value,
@@ -44,16 +44,30 @@ const SignIn = () => {
 
             // form.reset();
             navigate('/feedback-app/login')
-        } catch (error) {
-            console.log('Ha ocurrido un error', error)
+        } catch (err) {
+            setError({ ...error, error: true, message: err.response.data.message.replace(err.response.data.message.split(" ")[0], " "), firstWord: err.response.data.message.split(" ")[0] })
+            console.log('Ha ocurrido un error', err.response)
+
         }
         // form.submit();
         // <Redirect to="/feedback-app" />
+
+
+        // signIn({
+        //     url: "/sign-in",
+        //     data: {
+        //         username: form.username.value,
+        //         password: form.password.value,
+        //         mail: form.mail.value
+        //     },
+        // })
+        //     .then(() => navigate('/feedback-app/login'))
+        //     .catch((error) => console.log(error.response))
+
     }
 
 
     return (
-
         <FormContainer containerName={"Sign In"} handleForm={handleForm} setHandleForm={setHandleForm}>
             <Form
                 handleSubmit={handleSubmit}
