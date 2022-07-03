@@ -7,6 +7,7 @@ import { sockets } from "../../socket";
 const CreateNewFeedback = props => {
 
 	const handleSubmit = e => {
+		console.log('Ejecutando createFeedback')
 		try {
 			e.preventDefault();
 			const form = e.target;
@@ -27,6 +28,7 @@ const CreateNewFeedback = props => {
 				feature: form.feature.value,
 				description: form.description.value,
 			})
+			console.log('Ejecutando createFeedback')
 			form.reset();
 		} catch (error) {
 			console.log('Feedback failed!!', error)

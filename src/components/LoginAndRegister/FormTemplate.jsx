@@ -60,6 +60,10 @@ const FormTemplate = () => {
 
     }, [])
 
+    // if(itIsLogin) {
+    //     return 
+    // }
+
     if (loading) {
         return <div className="w-full h-screen flex justify-center items-center ">
             <Loading />
@@ -68,7 +72,7 @@ const FormTemplate = () => {
 
     return (
         <>
-            {itIsLogin ? <Index /> : <div className="w-full h-screen flex flex-col items-center justify-center">
+            {itIsLogin ? navigate('/feedback-app/index') : <div className="w-full h-screen flex flex-col items-center justify-center">
                 {/* <Login itIsLogin={itIsLogin} setItIsLogin={setItIsLogin} />
                 <SignIn /> */}
                 <h2 className="text-center text-3xl my-10">Welcome to your Feedback Board</h2>

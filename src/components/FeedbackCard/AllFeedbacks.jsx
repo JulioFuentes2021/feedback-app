@@ -18,21 +18,24 @@ const AllFeedbacks = () => {
 	const [allFeedbacks, setAllFeedbacks] = useState([]);
 	// con [isRendered, setIsRendered] = useState(false)
 	let isRendered = false;
+	// const sockets = useSelector((state) => state.sockets.value)
 
 	const getFeedbacks = async () => {
-		dispatch(setLoading());
+		// dispatch(setLoading(!loading));
 		try {
 			const data = await axios.get("http://localhost:5000/feedback/all");
 			setAllFeedbacks(data.data);
+			console.log(data)
 
 		} catch (error) {
-			dispatch(setError());
+			dispatch(setError(!error));
 		}
-		dispatch(setLoading());
+		// dispatch(setLoading(!loading));
 	};
 
 	useEffect(() => {
 		isRendered = true;
+		getFeedbacks();
 
 		sockets.emit("get")
 
@@ -55,6 +58,7 @@ const AllFeedbacks = () => {
 
 		return () => {
 			sockets.off('update');
+			sockets.off('getFeed');
 			sockets.off('get');
 		}
 

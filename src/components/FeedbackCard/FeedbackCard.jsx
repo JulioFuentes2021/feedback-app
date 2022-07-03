@@ -3,7 +3,7 @@ import { FaComment, FaChevronUp } from "react-icons/fa";
 import addUpvote from '../../Axios/addUpvote';
 import { addUpvoteSocket } from '../../socket/index';
 import io from "socket.io-client"
-import { connection, sockets } from "../../socket/index";
+import { sockets } from "../../socket/index";
 import { Link } from "react-router-dom";
 
 // const socket = io.connect("http://localhost:5000", {

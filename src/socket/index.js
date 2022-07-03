@@ -2,14 +2,16 @@ import { io } from "socket.io-client";
 
 let socket;
 
-export const connection = async () => {
+export const connectionSocket = async () => {
     try {
         const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
         const { token } = await response.json();
         socket = io.connect("http://localhost:5000", {
             extraHeaders: {
                 Authorization: `Bearer ${token}`
-            }
+            },
+            reconnect: true,
+            'multiplex': false
         });
 
         return socket
@@ -18,7 +20,7 @@ export const connection = async () => {
     }
 }
 
-export const sockets = await connection();
+export const sockets = await connectionSocket();
 
 // export const socket = io("http://localhost:5000");
 
