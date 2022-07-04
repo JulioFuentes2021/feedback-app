@@ -1,39 +1,66 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import MenuMobile from "@Header/MenuMobile";
 import AddFeedback from "@AddFeedbackBar/AddFeedback";
 import AllFeedbacks from "@FeedbackCard/AllFeedbacks";
 import Status from "@Status/Status";
+import { FeedbackContext } from "../context/context";
 import { useSelector, useDispatch } from 'react-redux'
 import { connection } from "../redux/slices/socketConnection";
 import { connectionSocket } from "../socket/index";
 import { io } from "socket.io-client";
 
 const Index = () => {
-	const sockets = useSelector((state) => state.sockets.value)
-	const dispatch = useDispatch();
+	// const sockets = useSelector((state) => state.sockets.value)
+	// const dispatch = useDispatch();
+
+	// useEffect(() => {
+	// 	const test = async () => {
+	// 		try {
+	// 			const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
+	// 			const { token } = await response.json();
+	// 			const socket = io.connect("http://localhost:5000", {
+	// 				extraHeaders: {
+	// 					Authorization: `Bearer ${token}`
+	// 				},
+	// 				// reconnect: true,
+	// 				// 'multiplex': false
+	// 			});
+
+	// 			return () => dispatch(connection(socket))
+	// 		} catch (error) {
+	// 			return error
+	// 		}
+	// 	}
+
+	// 	// dispatch(connection(connectionSocket))
+	// 	console.log(test())
+	// 	console.log(dispatch)
+	// }, [])
+
+	const { setSocket, socket } = useContext(FeedbackContext)
 
 	useEffect(() => {
-		const test = async () => {
-			try {
-				const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
-				const { token } = await response.json();
-				const socket = io.connect("http://localhost:5000", {
-					extraHeaders: {
-						Authorization: `Bearer ${token}`
-					},
-					// reconnect: true,
-					// 'multiplex': false
-				});
+		const setConnection = async () => {
+			const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
+			const { token } = await response.json()
 
-				return () => dispatch(connection(socket))
-			} catch (error) {
-				return error
-			}
+			const socket2 = io.connect("http://localhost:5000", {
+				extraHeaders: {
+					Authorization: `Bearer ${token}`
+				},
+				// reconnect: true,
+				// 'multiplex': false
+			});
+
+			setSocket(socket2)
+			console.log(socket2)
+			console.log(socket)
+			return socket2
 		}
 
-		// dispatch(connection(connectionSocket))
-		console.log(test())
-		console.log(dispatch)
+		// setSocket(setConnection())
+		setConnection()
+
 	}, [])
 
 	return (

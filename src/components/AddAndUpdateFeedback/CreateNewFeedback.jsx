@@ -1,10 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import UtilityButtons from "../Utilities/UtilityButtons";
 import Back from "@Utilities/Back";
 import AddFeedback from "@Axios/addFeedback";
 import { sockets } from "../../socket";
+import { FeedbackContext } from "../../context/context";
 
 const CreateNewFeedback = props => {
+
+	const { socket } = useContext(FeedbackContext)
 
 	const handleSubmit = e => {
 		console.log('Ejecutando createFeedback')
@@ -23,7 +26,7 @@ const CreateNewFeedback = props => {
 			// 	},
 			// 	headers: { 'authorization': `Bearer ${token}` }
 			// });
-			sockets.emit("addFeedback", {
+			socket.emit("addFeedback", {
 				title: form.title.value,
 				feature: form.feature.value,
 				description: form.description.value,

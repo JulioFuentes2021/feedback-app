@@ -24,6 +24,24 @@ const FormTemplate = () => {
         // }
 
 
+        const setConnection = async () => {
+            const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
+            const { token } = await response.json()
+
+            const socket2 = io.connect("http://localhost:5000", {
+                extraHeaders: {
+                    Authorization: `Bearer ${token}`
+                },
+                // reconnect: true,
+                // 'multiplex': false
+            });
+
+            // setSocket('Hola')
+            console.log(socket2)
+            console.log(socket)
+            return socket2
+        }
+
         const checkRefreshToken = async () => {
             const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
             // if (response.status === 401) throw new Error("Refresh token doesn't exist")

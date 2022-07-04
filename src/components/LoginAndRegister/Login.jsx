@@ -1,13 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import login from "@Axios/login";
 import { useNavigate } from "react-router-dom";
 import FormContainer from "./FormContainer";
 import Form from "./Form";
+import { FeedbackContext } from "../../context/context";
 
 const Login = ({ itIsLogin, setItIsLogin }) => {
     const [handleForm, setHandleForm] = useState(false);
     const [error, setError] = useState(false);
     const navigate = useNavigate();
+    const context = useContext(FeedbackContext);
+
+
+    // const setConnection = async () => {
+    //     const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
+    //     const { token } = await response.json()
+
+    //     const socket2 = io.connect("http://localhost:5000", {
+    //         extraHeaders: {
+    //             Authorization: `Bearer ${token}`
+    //         },
+    //         // reconnect: true,
+    //         // 'multiplex': false
+    //     });
+
+    //     // setSocket('Hola')
+    //     console.log(socket2)
+    //     console.log(socket)
+    //     return socket2
+    // }
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -16,8 +37,8 @@ const Login = ({ itIsLogin, setItIsLogin }) => {
         console.log(form.password.value);
 
         try {
-            // const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
-            // const { token } = await response.json()
+            const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
+            const { token } = await response.json()
 
 
             await login({
@@ -38,6 +59,16 @@ const Login = ({ itIsLogin, setItIsLogin }) => {
             // // axios.post('http://localhost:8000/auth/login')
 
             form.reset();
+            // socket = io.connect("http://localhost:5000", {
+            //     extraHeaders: {
+            //         Authorization: `Bearer ${token}`
+            //     },
+            //     reconnect: true,
+            //     'multiplex': false
+            // });
+
+            // context.setSocket(socket);
+            // context.setSocket(await setConnection())
             navigate('/feedback-app/index')
             // setItIsLogin(!itIsLogin);
             // console.log('siuu')

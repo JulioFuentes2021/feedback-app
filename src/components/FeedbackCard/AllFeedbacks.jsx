@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import FeedbackCard from "./FeedbackCard";
 import { useEffect, useState } from "react";
@@ -10,15 +10,17 @@ import Error from "./Error";
 import FirstFeedback from "./FirstFeedback";
 import { sockets } from "../../socket/index";
 import { testingBackendEmitter } from "../../socket/index";
+import { FeedbackContext } from "../../context/context";
 
 const AllFeedbacks = () => {
-	const dispatch = useDispatch();
-	const loading = useSelector(state => state.loading.value);
-	const error = useSelector(state => state.error.value);
+	// const dispatch = useDispatch();
+	// const loading = useSelector(state => state.loading.value);
+	// const error = useSelector(state => state.error.value);
 	const [allFeedbacks, setAllFeedbacks] = useState([]);
 	// con [isRendered, setIsRendered] = useState(false)
 	let isRendered = false;
 	// const sockets = useSelector((state) => state.sockets.value)
+	const { socket } = useContext(FeedbackContext)
 
 	const getFeedbacks = async () => {
 		// dispatch(setLoading(!loading));
@@ -28,41 +30,45 @@ const AllFeedbacks = () => {
 			console.log(data)
 
 		} catch (error) {
-			dispatch(setError(!error));
+			// dispatch(setError(!error));
+			console.log(error)
 		}
 		// dispatch(setLoading(!loading));
 	};
 
 	useEffect(() => {
-		isRendered = true;
-		getFeedbacks();
+		if (socket) {
+			isRendered = true;
+			getFeedbacks();
+			console.log('SOCKET', socket)
 
-		sockets.emit("get")
+			socket.emit("get")
 
-		sockets.on("getFeed", (data) => {
-			setAllFeedbacks(data)
-		})
+			socket.on("getFeed", (data) => {
+				setAllFeedbacks(data)
+			})
 
-		// sockets.on("get", (data) => {
-		// 	console.log(data)
-		// 	console.log("Socket get executed")
-		// 	// setAllFeedbacks(data)
-		// })
-		// if (!allFeedbacks.length) getFeedbacks();
-		// testingBackendEmitter()
-		sockets.on("update", (data) => {
-			console.log("Feedbacks updated", data)
-			setAllFeedbacks(data)
-		})
-		console.log(sockets)
+			// socket.on("get", (data) => {
+			// 	console.log(data)
+			// 	console.log("Socket get executed")
+			// 	// setAllFeedbacks(data)
+			// })
+			// if (!allFeedbacks.length) getFeedbacks();
+			// testingBackendEmitter()
+			socket.on("update", (data) => {
+				console.log("Feedbacks updated", data)
+				setAllFeedbacks(data)
+			})
+			console.log(socket)
 
-		return () => {
-			sockets.off('update');
-			sockets.off('getFeed');
-			sockets.off('get');
+			return () => {
+				socket.off('update');
+				socket.off('getFeed');
+				socket.off('get');
+			}
+
 		}
-
-	}, []);
+	}, [socket]);
 
 	// if (!allFeedbacks.length) {
 	// 	return "Un mensaje para indicar que no hay feedbacks disponibles";
@@ -73,13 +79,13 @@ const AllFeedbacks = () => {
 	// 	setAllFeedbacks(data)
 	// })
 
-	if (error) {
-		return <Error />;
-	}
+	// if (error) {
+	// 	return <Error />;
+	// }
 
-	if (loading) {
-		return <LOADING />;
-	}
+	// if (loading) {
+	// 	return <LOADING />;
+	// }
 
 	return (
 		<div>
