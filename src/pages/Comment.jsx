@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import AddComment from "../components/Comments/AddComment";
 import CommentComponent from "../components/Comments/Comment";
 import CommentsBar from "../components/Comments/CommentsBar";
@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { sockets } from "../socket/index";
 import Back from '@Utilities/Back';
 import Buttons from '@Utilities/Buttons';
+import { FeedbackContext } from "../context/context";
 
 const Comment = () => {
     const { id } = useParams();
@@ -16,6 +17,7 @@ const Comment = () => {
     const [replyId, setReplyId] = useState();
     const [mail, setMail] = useState();
     const [counter, setCounter] = useState(0);
+    const { socket } = useContext(FeedbackContext)
 
     useEffect(() => {
         const getComments = async commentId => {
@@ -33,10 +35,12 @@ const Comment = () => {
         //     console.log('Data', data)
         // })
 
-        sockets.on("receiverSuggestions", data => {
-            getComments();
-            // setUserInfo(data);
-        });
+        if (socket) {
+            socket.on("receiverSuggestions", data => {
+                getComments();
+                // setUserInfo(data);
+            });
+        }
     }, []);
 
     return (
@@ -113,7 +117,7 @@ const Comment = () => {
                 )}
             </div>
             <div className="w-full pt-4">
-                <AddComment mail={mail} feedbackId={feedback._id} reply={reply} replyId={replyId} />
+                <AddComment mail={mail} feedbackId={feedback._id} reply={reply} replyId={replyId} socket={socket} />
             </div>
         </div>
     );

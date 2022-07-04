@@ -5,23 +5,25 @@ import { useSelector, useDispatch } from "react-redux";
 import { increment } from "@redux/slices/test";
 import { sockets } from "../../socket/index";
 
-const AddFeedback = () => {
+const AddFeedback = ({ socket }) => {
 	// const count = useSelector(state => state.counter.value);
 	const dispatch = useDispatch();
 	const [suggestions, setSuggestions] = useState();
 
 	useEffect(() => {
 
-		// sockets.emit("getSuggestions");
-		sockets.on("suggestions", (data) => {
-			console.log(data)
-			setSuggestions(data);
-		})
+		if (socket) {
+			// sockets.emit("getSuggestions");
+			socket.on("suggestions", (data) => {
+				console.log(data)
+				setSuggestions(data);
+			})
 
-		return () => {
-			sockets.off("suggestions")
+			return () => {
+				socket.off("suggestions")
+			}
 		}
-	}, [])
+	}, [socket])
 
 	return (
 		<div className="text-xl p-2 text-white flex flex-col sm:flex-row items-center justify-between  bg-gray-800">

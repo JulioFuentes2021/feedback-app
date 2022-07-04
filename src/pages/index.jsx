@@ -70,7 +70,7 @@ const Index = () => {
 				<MenuMobile />
 			</div>
 			<div className="col-span-3">
-				<AddFeedback />
+				<AddFeedback socket={socket} />
 				<article>
 					<AllFeedbacks />
 				</article>

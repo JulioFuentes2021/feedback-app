@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaComment, FaChevronUp } from "react-icons/fa";
 import addUpvote from '../../Axios/addUpvote';
 import { addUpvoteSocket } from '../../socket/index';
 import io from "socket.io-client"
 import { sockets } from "../../socket/index";
 import { Link } from "react-router-dom";
+import { FeedbackContext } from "../../context/context";
 
 // const socket = io.connect("http://localhost:5000", {
 // 	extraHeaders: {
@@ -13,6 +14,8 @@ import { Link } from "react-router-dom";
 // });
 
 const FeedbackCard = props => {
+
+	const { socket } = useContext(FeedbackContext)
 
 	const increaseUpvoteCount = async () => {
 		// const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
@@ -27,7 +30,7 @@ const FeedbackCard = props => {
 		// })
 		// console.log('Socket', sockets)
 		console.log(props.id)
-		sockets.emit("test", { id: props.id })
+		socket.emit("test", { id: props.id })
 	}
 
 

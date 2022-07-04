@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import addCommentAction from "../../Axios/addComment";
 import { sockets } from "../../socket";
 
-const AddComment = ({ feedbackId, reply, replyId, mail }) => {
+const AddComment = ({ feedbackId, reply, replyId, mail, socket }) => {
 	const commentContent = useRef();
 
 	const addComment = async () => {
@@ -23,16 +23,16 @@ const AddComment = ({ feedbackId, reply, replyId, mail }) => {
 		// 		comment: commentContent.current.value
 		// 	}
 		// })
-		sockets.emit("getSuggestions", { id: feedbackId, comment: commentContent.current.value })
+		socket?.emit("getSuggestions", { id: feedbackId, comment: commentContent.current.value })
 
 		return () => {
-			sockets.off("getSuggestions")
+			socket?.off("getSuggestions")
 		}
 
 	};
 
 	const addReply = () => {
-		sockets.emit("addReply", { feedbackId, replyId, reply: commentContent.current.value, mail })
+		socket?.emit("addReply", { feedbackId, replyId, reply: commentContent.current.value, mail })
 	};
 
 	return (
