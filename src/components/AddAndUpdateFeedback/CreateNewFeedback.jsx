@@ -1,8 +1,5 @@
 import React, { useRef, useState, useContext } from "react";
-import UtilityButtons from "../Utilities/UtilityButtons";
 import Back from "@Utilities/Back";
-import AddFeedback from "@Axios/addFeedback";
-import { sockets } from "../../socket";
 import { FeedbackContext } from "../../context/context";
 
 const CreateNewFeedback = props => {
@@ -14,18 +11,6 @@ const CreateNewFeedback = props => {
 		try {
 			e.preventDefault();
 			const form = e.target;
-			// const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
-			// const { token } = await response.json()
-
-			// await AddFeedback({
-			// 	url: "/add",
-			// 	data: {
-			// 		title: form.title.value,
-			// 		feature: form.feature.value,
-			// 		description: form.description.value,
-			// 	},
-			// 	headers: { 'authorization': `Bearer ${token}` }
-			// });
 			socket.emit("addFeedback", {
 				title: form.title.value,
 				feature: form.feature.value,

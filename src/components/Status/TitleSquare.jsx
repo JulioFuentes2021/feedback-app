@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const TitleSquare = () => {
 
 	const [userName, setUserName] = useState('');
-
-	// useEffect(() => {
-	// 	const user = document.cookie.split(';')[1].split('=')[1];
-	// 	setUserName(user)
-	// }, [])
 
 	return (
 		<div className="customBackground w-72 h-48 flex flex-col justify-end">

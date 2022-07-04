@@ -32,7 +32,6 @@ const Form = ({ handleSubmit, error, isSignIn, formName }) => {
                 name="username"
                 autoFocus
                 required
-            // value="Ronaldo"
             />
             <input
                 className="max-w-xl outline-none w-full p-2 my-2 bg-transparent border-b border-white focus:border-purple-800 transition-b ease duration-2000"
@@ -41,7 +40,6 @@ const Form = ({ handleSubmit, error, isSignIn, formName }) => {
                 name="mail"
                 autoFocus
                 required
-            // value="Ronaldo"
             />{" "}
             <input
                 className="max-w-xl outline-none w-full p-2 my-2 bg-transparent border-b border-white focus:border-purple-800 transition-b ease duration-2000"
@@ -49,7 +47,6 @@ const Form = ({ handleSubmit, error, isSignIn, formName }) => {
                 placeholder="Password"
                 name="password"
                 required
-            // value="canales"
             />
             <button
                 className="max-w-xl my-5 bg-purple-800 w-full p-3 hover:bg-purple-900"

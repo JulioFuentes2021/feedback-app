@@ -1,35 +1,13 @@
 import React, { useContext } from "react";
 import { FaComment, FaChevronUp } from "react-icons/fa";
-import addUpvote from '../../Axios/addUpvote';
-import { addUpvoteSocket } from '../../socket/index';
-import io from "socket.io-client"
-import { sockets } from "../../socket/index";
 import { Link } from "react-router-dom";
 import { FeedbackContext } from "../../context/context";
-
-// const socket = io.connect("http://localhost:5000", {
-// 	extraHeaders: {
-// 		Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNGEzOTE0ZmZlODE3ODc4M2IxNDM2OSIsImlhdCI6MTY1NTI1NjIwMiwiZXhwIjo0MjQ3MjU2MjAyfQ.RibMYWjJdl8BjlqKaLtmSYakRLf7cQkqNof6hHlrUF0"
-// 	}
-// });
 
 const FeedbackCard = props => {
 
 	const { socket } = useContext(FeedbackContext)
 
 	const increaseUpvoteCount = async () => {
-		// const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
-		// const { token } = await response.json();
-
-		// addUpvote({
-		// 	url: '/',
-		// 	data: {
-		// 		id: props.id,
-		// 	},
-		// 	headers: { 'authorization': `Bearer ${token}` }
-		// })
-		// console.log('Socket', sockets)
-		console.log(props.id)
 		socket.emit("test", { id: props.id })
 	}
 

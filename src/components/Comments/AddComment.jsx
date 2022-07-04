@@ -1,28 +1,9 @@
 import React, { useRef } from "react";
-import addCommentAction from "../../Axios/addComment";
-import { sockets } from "../../socket";
 
 const AddComment = ({ feedbackId, reply, replyId, mail, socket }) => {
 	const commentContent = useRef();
 
 	const addComment = async () => {
-		// await fetch(`http://localhost:5000/feedback/comment/add`, {
-		// 	method: 'POST',
-		// 	headers: {
-		// 		'Accept': 'application/json',
-		// 		'Content-Type': 'application/json'
-		// 	},
-		// 	body: JSON.stringify({
-		// 		id: feedbackId,
-		// 		comment: commentContent.current.value
-		// 	})
-		// })
-		// await addCommentAction({
-		// 	data: {
-		// 		id: feedbackId,
-		// 		comment: commentContent.current.value
-		// 	}
-		// })
 		socket?.emit("getSuggestions", { id: feedbackId, comment: commentContent.current.value })
 
 		return () => {

@@ -4,19 +4,15 @@ import CommentComponent from "../components/Comments/Comment";
 import CommentsBar from "../components/Comments/CommentsBar";
 import FeedbackCard from "../components/FeedbackCard/FeedbackCard";
 import { useParams } from "react-router-dom";
-import { sockets } from "../socket/index";
 import Back from '@Utilities/Back';
-import Buttons from '@Utilities/Buttons';
 import { FeedbackContext } from "../context/context";
 
 const Comment = () => {
     const { id } = useParams();
     const [feedback, setFeedback] = useState({});
-    const [userInfo, setUserInfo] = useState({});
     const [reply, setReply] = useState(false);
     const [replyId, setReplyId] = useState();
     const [mail, setMail] = useState();
-    const [counter, setCounter] = useState(0);
     const { socket } = useContext(FeedbackContext)
 
     useEffect(() => {
@@ -30,15 +26,10 @@ const Comment = () => {
         };
 
         getComments();
-        // sockets.emit("getSuggestions", id)
-        // sockets.on("receiveSuggestions", (data) => {
-        //     console.log('Data', data)
-        // })
 
         if (socket) {
             socket.on("receiverSuggestions", data => {
                 getComments();
-                // setUserInfo(data);
             });
         }
     }, []);
@@ -70,11 +61,6 @@ const Comment = () => {
                     total={
                         Object.keys(feedback).length && Object.keys(feedback.comment).length
                     }
-                // total={
-                //     Object.keys(feedback).length && feedback.comment.forEach((element) => {
-                //         return element.replies.length
-                //     })
-                // }
                 />
                 {Object.keys(feedback).length &&
                     Object.keys(feedback.comment).length ? (

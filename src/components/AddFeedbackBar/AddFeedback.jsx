@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { FaLightbulb } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { increment } from "@redux/slices/test";
-import { sockets } from "../../socket/index";
 
 const AddFeedback = ({ socket }) => {
-	// const count = useSelector(state => state.counter.value);
 	const dispatch = useDispatch();
 	const [suggestions, setSuggestions] = useState();
 
 	useEffect(() => {
 
 		if (socket) {
-			// sockets.emit("getSuggestions");
 			socket.on("suggestions", (data) => {
-				console.log(data)
 				setSuggestions(data);
 			})
 
