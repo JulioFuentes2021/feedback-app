@@ -52,6 +52,7 @@ const Comment = () => {
                     description={feedback.description}
                     upvotes={feedback.upvotes}
                     users={12}
+                    comments={feedback?.commentsLength}
                     key={feedback._id}
                     id={feedback._id}
                 />
@@ -59,7 +60,8 @@ const Comment = () => {
             <div className="flex justify-center flex-col">
                 <CommentsBar
                     total={
-                        Object.keys(feedback).length && Object.keys(feedback.comment).length
+                        // Object.keys(feedback).length && Object.keys(feedback.comment).length
+                        feedback?.commentsLength || 0
                     }
                 />
                 {Object.keys(feedback).length &&

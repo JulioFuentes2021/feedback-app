@@ -54,6 +54,7 @@ const AllFeedbacks = () => {
 						description={card.description}
 						upvotes={card.upvotes}
 						users={card.test}
+						comments={card.commentsLength}
 						key={card._id}
 						id={card._id}
 					/>

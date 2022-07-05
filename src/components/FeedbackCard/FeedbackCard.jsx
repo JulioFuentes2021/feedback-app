@@ -39,7 +39,7 @@ const FeedbackCard = props => {
 					<FaComment />
 				</span>
 				<Link to={`/feedback-app/comment/${props.id}`}>
-					<span className="font-semibold">2</span>
+					<span className="font-semibold">{props.comments || 0}</span>
 				</Link>
 			</section>
 		</article>
