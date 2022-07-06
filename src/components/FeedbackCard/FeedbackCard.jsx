@@ -11,6 +11,7 @@ const FeedbackCard = props => {
 
 	const increaseUpvoteCount = async () => {
 		socket.emit("test", { id: props.id })
+		// socket.emit("justUpvote")
 	}
 
 

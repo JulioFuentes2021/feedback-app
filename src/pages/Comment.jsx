@@ -33,6 +33,10 @@ const Comment = () => {
             socket.on("receiverSuggestions", data => {
                 getComments();
             })
+
+            socket.on("justUpvote", () => {
+                getComments();
+            })
         }
     }, [socket]);
 
@@ -55,7 +59,7 @@ const Comment = () => {
                     description={feedback.description}
                     upvotes={feedback.upvotes}
                     users={12}
-                    comments={feedback?.commentsLength}
+                    comments={feedback.commentsLength}
                     key={feedback._id}
                     id={feedback._id}
                 />
