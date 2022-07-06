@@ -4,11 +4,13 @@ import FeedbackCard from "./FeedbackCard";
 import { useEffect, useState } from "react";
 import FirstFeedback from "./FirstFeedback";
 import { FeedbackContext } from "../../context/context";
+import useSocket from "../../customHooks/socket";
 
 const AllFeedbacks = () => {
 	const [allFeedbacks, setAllFeedbacks] = useState([]);
 	let isRendered = false;
-	const { socket } = useContext(FeedbackContext)
+	// const { socket } = useContext(FeedbackContext)
+	const [socket] = useSocket();
 
 	const getFeedbacks = async () => {
 		try {
@@ -31,13 +33,18 @@ const AllFeedbacks = () => {
 				setAllFeedbacks(data)
 			})
 			socket.on("update", (data) => {
-				setAllFeedbacks(data)
+				setAllFeedbacks(data);
+			})
+
+			socket.on("updateComments", () => {
+				getFeedbacks();
 			})
 
 			return () => {
 				socket.off('update');
 				socket.off('getFeed');
 				socket.off('get');
+				socket.off('updateComments');
 			}
 
 		}

@@ -5,7 +5,7 @@ import CommentsBar from "../components/Comments/CommentsBar";
 import FeedbackCard from "../components/FeedbackCard/FeedbackCard";
 import { useParams } from "react-router-dom";
 import Back from '@Utilities/Back';
-import { FeedbackContext } from "../context/context";
+import useSocket from "../customHooks/socket";
 
 const Comment = () => {
     const { id } = useParams();
@@ -13,7 +13,7 @@ const Comment = () => {
     const [reply, setReply] = useState(false);
     const [replyId, setReplyId] = useState();
     const [mail, setMail] = useState();
-    const { socket } = useContext(FeedbackContext)
+    const [socket] = useSocket();
 
     useEffect(() => {
         const getComments = async commentId => {
@@ -25,14 +25,17 @@ const Comment = () => {
             console.log(data);
         };
 
-        getComments();
+        if (!feedback.length) {
+            getComments();
+        }
 
         if (socket) {
             socket.on("receiverSuggestions", data => {
                 getComments();
-            });
+            })
         }
-    }, []);
+    }, [socket]);
+
 
     return (
         <div className="flex flex-col justify-between h-screen sm:px-20">

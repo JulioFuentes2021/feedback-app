@@ -2,10 +2,12 @@ import React, { useContext } from "react";
 import { FaComment, FaChevronUp } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { FeedbackContext } from "../../context/context";
+import useSocket from "../../customHooks/socket";
 
 const FeedbackCard = props => {
 
 	const { socket } = useContext(FeedbackContext)
+	// const [socket] = useSocket();
 
 	const increaseUpvoteCount = async () => {
 		socket.emit("test", { id: props.id })

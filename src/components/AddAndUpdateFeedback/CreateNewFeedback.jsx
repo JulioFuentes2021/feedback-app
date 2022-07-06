@@ -1,10 +1,12 @@
 import React, { useRef, useState, useContext } from "react";
 import Back from "@Utilities/Back";
 import { FeedbackContext } from "../../context/context";
+import useSocket from "../../customHooks/socket";
 
 const CreateNewFeedback = props => {
 
-	const { socket } = useContext(FeedbackContext)
+	// const { socket } = useContext(FeedbackContext)
+	const [socket] = useSocket();
 
 	const handleSubmit = e => {
 		console.log('Ejecutando createFeedback')
