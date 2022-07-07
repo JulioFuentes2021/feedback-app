@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import { FaLightbulb } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { increment } from "@redux/slices/test";
+import { FeedbackContext } from "../../context/context";
+import useSocket from "../../customHooks/socket";
 
 const AddFeedback = ({ socket }) => {
 	const dispatch = useDispatch();
 	const [suggestions, setSuggestions] = useState();
+	const sortOptions = useRef(null);
+	const { setSortBy } = useContext(FeedbackContext);
+	// const { socket } = useSocket();
 
 	useEffect(() => {
 
@@ -20,6 +25,12 @@ const AddFeedback = ({ socket }) => {
 			}
 		}
 	}, [socket])
+
+	const changeFeedbackSort = () => {
+		console.log(sortOptions.current.value)
+		setSortBy(sortOptions.current.value)
+		// socket.emit("sortBy", sortOptions.current.value)
+	}
 
 	return (
 		<div className="text-xl p-2 text-white flex flex-col sm:flex-row items-center justify-between  bg-gray-800">
@@ -36,12 +47,15 @@ const AddFeedback = ({ socket }) => {
 						onClick={() => dispatch(increment())}
 						name="sort"
 						id="options"
+						ref={sortOptions}
+						onChange={changeFeedbackSort}
 						className="bg-gray-800 font-semibold outline-none"
 					>
-						<option value="MostUpvotes">Most Upvotes</option>
-						<option value="LessUpvotes">Less Upvotes</option>
-						<option value="LessUpvotes">Most Comments</option>
-						<option value="LessUpvotes">Less Comments</option>
+						<option value="/all">None</option>
+						<option value="/upvotes/-1">Most Upvotes</option>
+						<option value="/upvotes/1">Less Upvotes</option>
+						<option value="/comments/-1">Most Comments</option>
+						<option value="/comments/1">Less Comments</option>
 					</select>
 				</div>
 			</article>

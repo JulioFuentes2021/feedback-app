@@ -1,39 +1,29 @@
-import React, { useContext } from "react";
-import axios from "axios";
+import React from "react";
 import FeedbackCard from "./FeedbackCard";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import FirstFeedback from "./FirstFeedback";
-import { FeedbackContext } from "../../context/context";
 import useSocket from "../../customHooks/socket";
+import useAllFeedback from "../../customHooks/allFeedbacks";
 
 const AllFeedbacks = () => {
-	const [allFeedbacks, setAllFeedbacks] = useState([]);
 	let isRendered = false;
-	// const { socket } = useContext(FeedbackContext)
 	const [socket] = useSocket();
-
-	const getFeedbacks = async () => {
-		try {
-			const data = await axios.get("http://localhost:5000/feedback/all");
-			setAllFeedbacks(data.data);
-
-		} catch (error) {
-			console.log(error)
-		}
-	};
+	const [data, getFeedbacks] = useAllFeedback();
 
 	useEffect(() => {
 		if (socket) {
 			isRendered = true;
-			getFeedbacks();
-
-			socket.emit("get")
+			if (!data.length) getFeedbacks();
 
 			socket.on("getFeed", (data) => {
-				setAllFeedbacks(data)
+				console.log('getFeed')
+				// setAllFeedbacks(data)
+				getFeedbacks()
 			})
 			socket.on("update", (data) => {
-				setAllFeedbacks(data);
+				console.log('update')
+				// setAllFeedbacks(data);
+				getFeedbacks()
 			})
 
 			socket.on("updateComments", () => {
@@ -53,8 +43,8 @@ const AllFeedbacks = () => {
 
 	return (
 		<div>
-			{allFeedbacks.length ? (
-				allFeedbacks.map(card => (
+			{data.length ? (
+				data.map(card => (
 					<FeedbackCard
 						title={card.title}
 						feature={card.feature}
