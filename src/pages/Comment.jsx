@@ -100,6 +100,7 @@ const Comment = () => {
                                                 username={replies.creator}
                                                 mail={replies.mail}
                                                 getUserMail={setMail}
+                                                IsItReplly={true}
                                             />
                                         </div>
                                     ))

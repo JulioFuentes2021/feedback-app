@@ -9,9 +9,9 @@ const Comment = ({
 	username,
 	mail,
 	id,
-	getUserMail
+	getUserMail,
+	IsItReplly,
 }) => {
-
 	return (
 		<article className="p-4 flex flex-col bg-white">
 			<img
@@ -31,7 +31,7 @@ const Comment = ({
 						onClick={() => {
 							setReply(!reply);
 							setReplyId(id);
-							getUserMail(mail)
+							getUserMail(mail);
 						}}
 						className="text-blue-600 font-semibold cursor-pointer"
 					>
@@ -39,7 +39,18 @@ const Comment = ({
 					</span>
 				</section>
 				<section className="my-7">
-					<p className="text-gray-600">{text}</p>
+					<p className="text-gray-600">
+						{IsItReplly ? (
+							<>
+								<span className="text-purple-700 font-bold">
+									{text.split(" ")[0]}{" "}
+								</span>{" "}
+								{text.replace(text.split(" ")[0], " ")}
+							</>
+						) : (
+							text
+						)}
+					</p>
 				</section>
 			</div>
 		</article>
