@@ -7,6 +7,7 @@ import SignIn from "../components/LoginAndRegister/SignIn";
 import FormTemplate from '@LoginAndRegister/FormTemplate';
 import Comment from '../pages/Comment';
 import Context from "../context/context";
+import CreateNewFeedback from "../components/AddAndUpdateFeedback/CreateNewFeedback";
 
 
 const RoutesPage = () => {
@@ -21,6 +22,7 @@ const RoutesPage = () => {
 					<Route path="/feedback-app/login" element={<Login />} />
 					<Route path="/feedback-app/sign-in" element={<SignIn />} />
 					<Route path="/feedback-app/index" element={<Index />} />
+					<Route path="/feedback-app/edit/:id" element={<CreateNewFeedback IsItEdit={true} title={"Edit Feedback"} />} />
 				</Routes>
 			</Context>
 		</BrowserRouter>

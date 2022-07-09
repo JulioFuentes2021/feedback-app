@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import AddComment from "../components/Comments/AddComment";
 import CommentComponent from "../components/Comments/Comment";
 import CommentsBar from "../components/Comments/CommentsBar";
@@ -45,12 +46,14 @@ const Comment = () => {
         <div className="flex flex-col justify-between h-screen sm:px-20">
             <div className="flex justify-between items-center px-5">
                 <Back />
-                <button
-                    type="button"
-                    className="p-3 h-12 w-48 cursor-pointer rounded-xl text-white font-semibold hover:bg-purple-600 outline-none bg-purple-700"
-                >
-                    Edit Feedback
-                </button>
+                <Link to={`/feedback-app/edit/${feedback._id}`}>
+                    <button
+                        type="button"
+                        className="p-3 h-12 w-48 cursor-pointer rounded-xl text-white font-semibold hover:bg-purple-600 outline-none bg-purple-700"
+                    >
+                        Edit Feedback
+                    </button>
+                </Link>
             </div>
             <div className="mx-6 sm:mx-0">
                 <FeedbackCard

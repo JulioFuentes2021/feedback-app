@@ -1,36 +1,87 @@
-import React, { useRef, useState, useContext } from "react";
+import React, { useRef, useState, useContext, useEffect } from "react";
 import Back from "@Utilities/Back";
-import { FeedbackContext } from "../../context/context";
+// import { FeedbackContext } from "../../context/context";
+import { useParams } from 'react-router-dom';
 import useSocket from "../../customHooks/socket";
 
 const CreateNewFeedback = props => {
 
 	// const { socket } = useContext(FeedbackContext)
 	const [socket] = useSocket();
+	const [title, setTitle] = useState();
+	const [feature, setFeature] = useState();
+	const [description, setDescription] = useState();
+	const { id } = useParams();
+
+	const getFeedbackForEdit = async () => {
+		const data = await fetch(`http://localhost:5000/feedback/${id}`)
+		const response = await data.json()
+		console.log(response)
+		setTitle(response[0].title)
+		setFeature(response[0].feature)
+		setDescription(response[0].description)
+	}
+
+	useEffect(() => {
+		if (props.IsItEdit) getFeedbackForEdit()
+	}, [])
 
 	const handleSubmit = e => {
-		console.log('Ejecutando createFeedback')
 		try {
 			e.preventDefault();
 			const form = e.target;
-			socket.emit("addFeedback", {
-				title: form.title.value,
-				feature: form.feature.value,
-				description: form.description.value,
+			// socket.emit(`${props.IsItEdit ? 'edit' : 'addFeedback'}`, {
+			socket.emit('addFeedback', {
+				title,
+				feature,
+				description,
+				id
 			})
-			console.log('Ejecutando createFeedback')
 			form.reset();
 		} catch (error) {
 			console.log('Feedback failed!!', error)
 		}
 	};
 
+	const handleEdit = async (e) => {
+		console.log('Handle edit')
+		e.preventDefault();
+		const data = await fetch('http://localhost:5000/refresh', { credentials: 'include' });
+		const { token } = await data.json();
+
+		try {
+			const data = await fetch(`http://localhost:5000/feedback/edit/${id}`, {
+				method: 'POST',
+				credentials: 'include',
+				headers: {
+					'Content-Type': 'application/json',
+					'authorization': `Bearer ${token}`
+				},
+				body: JSON.stringify({
+					title,
+					feature,
+					description,
+					id
+				})
+			})
+			// const response = await data.json()
+			console.log(data)
+		} catch (error) {
+			console.log(error)
+		}
+	};
+
+	const editFeedback = (e, setValue) => {
+		setValue(e.target.value)
+	}
+
 	const feedbackDetail = useRef()
 
 	const [characters, setCharacters] = useState(0)
 
-	const handleChange = () => {
+	const handleChange = (e) => {
 		setCharacters(250 - feedbackDetail.current.value.length)
+		setDescription(e.target.value)
 	}
 
 	return (
@@ -39,10 +90,10 @@ const CreateNewFeedback = props => {
 				<Back />
 			</div>
 			<form
-				method="POST"
-				action="feedback/add"
+				// method="POST"
+				// action="feedback/add"
 				className="bg-white p-8 m-8 max-w-7xl"
-				onSubmit={handleSubmit}
+				onSubmit={props.IsItEdit ? handleEdit : handleSubmit}
 			>
 				<article className="mb-5 customBackground text-white font-bold -translate-y-14 w-12 h-12 rounded-full flex justify-center items-center text-2xl">
 					<span>+</span>
@@ -57,10 +108,12 @@ const CreateNewFeedback = props => {
 						consectetur rem nemo nam fuga expedita!
 					</small>
 					<textarea
+						value={title}
 						required
 						name="title"
 						id=""
 						placeholder=""
+						onChange={(e) => editFeedback(e, setTitle)}
 						className="h-24 bg-gray-300 outline-none p-4 resize-none"
 					></textarea>
 				</section>
@@ -73,6 +126,7 @@ const CreateNewFeedback = props => {
 						name="feature"
 						id=""
 						className="h-12 px-4 bg-gray-300 outline-none"
+						onChange={(e) => editFeedback(e, setFeature)}
 					>
 						<option value="feature" className="">
 							Feature
@@ -95,6 +149,7 @@ const CreateNewFeedback = props => {
 						name="description"
 						maxLength={250}
 						id=""
+						value={description}
 						placeholder=""
 						className="bg-gray-300 h-32 outline-none p-4 text-black resize-none"
 					></textarea>
