@@ -44,31 +44,33 @@ const CreateNewFeedback = props => {
 	};
 
 	const handleEdit = async (e) => {
-		console.log('Handle edit')
-		e.preventDefault();
-		const data = await fetch('http://localhost:5000/refresh', { credentials: 'include' });
-		const { token } = await data.json();
+		// console.log('Handle edit')
+		// e.preventDefault();
+		// const data = await fetch('http://localhost:5000/refresh', { credentials: 'include' });
+		// const { token } = await data.json();
 
-		try {
-			const data = await fetch(`http://localhost:5000/feedback/edit/${id}`, {
-				method: 'POST',
-				credentials: 'include',
-				headers: {
-					'Content-Type': 'application/json',
-					'authorization': `Bearer ${token}`
-				},
-				body: JSON.stringify({
-					title,
-					feature,
-					description,
-					id
-				})
-			})
-			// const response = await data.json()
-			console.log(data)
-		} catch (error) {
-			console.log(error)
-		}
+		// try {
+		// 	const data = await fetch(`http://localhost:5000/feedback/edit/${id}`, {
+		// 		method: 'POST',
+		// 		credentials: 'include',
+		// 		headers: {
+		// 			'Content-Type': 'application/json',
+		// 			'authorization': `Bearer ${token}`
+		// 		},
+		// 		body: JSON.stringify({
+		// 			title,
+		// 			feature,
+		// 			description,
+		// 			id
+		// 		})
+		// 	})
+		// 	// const response = await data.json()
+		// 	console.log(data)
+		// } catch (error) {
+		// 	console.log(error)
+		// }
+		e.preventDefault()
+		socket.emit('edit', { title, feature, description, id })
 	};
 
 	const editFeedback = (e, setValue) => {
@@ -127,6 +129,7 @@ const CreateNewFeedback = props => {
 						id=""
 						className="h-12 px-4 bg-gray-300 outline-none"
 						onChange={(e) => editFeedback(e, setFeature)}
+						value={feature}
 					>
 						<option value="feature" className="">
 							Feature
