@@ -9,7 +9,7 @@ const CreateNewFeedback = props => {
 	// const { socket } = useContext(FeedbackContext)
 	const [socket] = useSocket();
 	const [title, setTitle] = useState();
-	const [feature, setFeature] = useState();
+	const [feature, setFeature] = useState('feature');
 	const [description, setDescription] = useState();
 	const { id } = useParams();
 
@@ -75,6 +75,7 @@ const CreateNewFeedback = props => {
 
 	const editFeedback = (e, setValue) => {
 		setValue(e.target.value)
+		console.log(feature)
 	}
 
 	const feedbackDetail = useRef()
@@ -129,7 +130,7 @@ const CreateNewFeedback = props => {
 						id=""
 						className="h-12 px-4 bg-gray-300 outline-none"
 						onChange={(e) => editFeedback(e, setFeature)}
-						value={feature}
+					// value={feature}
 					>
 						<option value="feature" className="">
 							Feature

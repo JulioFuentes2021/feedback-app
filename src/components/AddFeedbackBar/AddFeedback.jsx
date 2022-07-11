@@ -6,16 +6,17 @@ import { increment } from "@redux/slices/test";
 import { FeedbackContext } from "../../context/context";
 import useSocket from "../../customHooks/socket";
 
-const AddFeedback = ({ socket }) => {
+const AddFeedback = () => {
 	const dispatch = useDispatch();
 	const [suggestions, setSuggestions] = useState();
 	const sortOptions = useRef(null);
 	const { setSortBy } = useContext(FeedbackContext);
+	const { socket } = useSocket();
 	// const { socket } = useSocket();
 
 	useEffect(() => {
-
 		if (socket) {
+			console.log('Suggestions')
 			socket.on("suggestions", (data) => {
 				setSuggestions(data);
 			})
