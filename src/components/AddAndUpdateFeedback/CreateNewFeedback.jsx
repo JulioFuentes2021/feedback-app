@@ -9,6 +9,7 @@ const CreateNewFeedback = props => {
 	// const { socket } = useContext(FeedbackContext)
 	const [socket] = useSocket();
 	const [title, setTitle] = useState();
+	const [error, setError] = useState({ state: false, message: '' });
 	const [feature, setFeature] = useState('feature');
 	const [description, setDescription] = useState();
 	const { id } = useParams();
@@ -23,15 +24,21 @@ const CreateNewFeedback = props => {
 	}
 
 	useEffect(() => {
-		if (props.IsItEdit) getFeedbackForEdit()
-	}, [])
+		if (props.IsItEdit) {
+			getFeedbackForEdit();
+			socket && socket.on('editFail', data => {
+				setError({ ...error, state: true, message: data })
+				console.log(error)
+			})
+		}
+	}, [socket])
 
 	const handleSubmit = e => {
 		try {
 			e.preventDefault();
 			const form = e.target;
 			// socket.emit(`${props.IsItEdit ? 'edit' : 'addFeedback'}`, {
-			socket.emit('addFeedback', {
+			socket && socket.emit('addFeedback', {
 				title,
 				feature,
 				description,
@@ -85,6 +92,10 @@ const CreateNewFeedback = props => {
 	const handleChange = (e) => {
 		setCharacters(250 - feedbackDetail.current.value.length)
 		setDescription(e.target.value)
+	}
+
+	if (error.state) {
+		return <h1>{error.message}</h1>
 	}
 
 	return (
