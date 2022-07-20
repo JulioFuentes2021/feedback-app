@@ -22,7 +22,7 @@ const Comment = () => {
                 `http://localhost:5000/feedback/comment/${id}`
             );
             const data = await response.json();
-            setFeedback(data.feedback);
+            setFeedback(data[0]);
             console.log(data);
         };
 
