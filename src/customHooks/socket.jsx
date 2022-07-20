@@ -15,8 +15,6 @@ const useSocket = () => {
                 extraHeaders: {
                     Authorization: `Bearer ${token}`
                 },
-                // reconnect: true,
-                // 'multiplex': false
             });
 
             setSocket(socket2)
@@ -28,11 +26,6 @@ const useSocket = () => {
 
     useEffect(() => {
         setConnection();
-
-        // if (!socket) {
-        //     console.log('Ejecutando')
-        //     setConnection();
-        // }
     }, [])
 
     return [socket, setConnection];

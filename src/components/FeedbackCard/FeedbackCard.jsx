@@ -7,11 +7,9 @@ import useSocket from "../../customHooks/socket";
 const FeedbackCard = props => {
 
 	const { socket } = useContext(FeedbackContext)
-	// const [socket] = useSocket();
 
 	const increaseUpvoteCount = async () => {
 		socket.emit("test", { id: props.id })
-		// socket.emit("justUpvote")
 	}
 
 
@@ -36,7 +34,6 @@ const FeedbackCard = props => {
 					</button>
 				</div>
 			</section>
-			{/* <section className="flex items-center absolute right-0 px-8 xl:px-12"> */}
 			<section className="flex items-center absolute right-10 sm:relative sm:right-0">
 				<span className="mx-2 text-gray-300 text-2xl">
 					<FaComment />

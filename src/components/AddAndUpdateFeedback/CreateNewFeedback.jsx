@@ -1,6 +1,5 @@
 import React, { useRef, useState, useContext, useEffect } from "react";
 import Back from "@Utilities/Back";
-// import { FeedbackContext } from "../../context/context";
 import { useParams } from 'react-router-dom';
 import useSocket from "../../customHooks/socket";
 
@@ -42,31 +41,6 @@ const CreateNewFeedback = props => {
 	};
 
 	const handleEdit = async (e) => {
-		// console.log('Handle edit')
-		// e.preventDefault();
-		// const data = await fetch('http://localhost:5000/refresh', { credentials: 'include' });
-		// const { token } = await data.json();
-
-		// try {
-		// 	const data = await fetch(`http://localhost:5000/feedback/edit/${id}`, {
-		// 		method: 'POST',
-		// 		credentials: 'include',
-		// 		headers: {
-		// 			'Content-Type': 'application/json',
-		// 			'authorization': `Bearer ${token}`
-		// 		},
-		// 		body: JSON.stringify({
-		// 			title,
-		// 			feature,
-		// 			description,
-		// 			id
-		// 		})
-		// 	})
-		// 	// const response = await data.json()
-		// 	console.log(data)
-		// } catch (error) {
-		// 	console.log(error)
-		// }
 		e.preventDefault()
 		socket.emit('edit', { title, feature, description, id })
 	};
@@ -91,8 +65,6 @@ const CreateNewFeedback = props => {
 				<Back />
 			</div>
 			<form
-				// method="POST"
-				// action="feedback/add"
 				className="bg-white p-8 m-8 max-w-7xl"
 				onSubmit={props.IsItEdit ? handleEdit : handleSubmit}
 			>

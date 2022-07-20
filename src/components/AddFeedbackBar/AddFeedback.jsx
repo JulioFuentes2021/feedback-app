@@ -12,7 +12,6 @@ const AddFeedback = () => {
 	const sortOptions = useRef(null);
 	const { setSortBy } = useContext(FeedbackContext);
 	const { socket } = useSocket();
-	// const { socket } = useSocket();
 
 	useEffect(() => {
 		if (socket) {
@@ -30,7 +29,6 @@ const AddFeedback = () => {
 	const changeFeedbackSort = () => {
 		console.log(sortOptions.current.value)
 		setSortBy(sortOptions.current.value)
-		// socket.emit("sortBy", sortOptions.current.value)
 	}
 
 	return (
