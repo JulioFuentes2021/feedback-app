@@ -18,13 +18,14 @@ const useSocket = () => {
             });
 
             setSocket(socket2)
-            return socket2
+            // return socket2
         } catch (error) {
             console.log(error)
         }
     }
 
     useEffect(() => {
+        console.log('Socket connection !!!')
         setConnection();
     }, [])
 

@@ -1,33 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import FeedbackCard from "./FeedbackCard";
 import { useEffect } from "react";
 import FirstFeedback from "./FirstFeedback";
 import useSocket from "../../customHooks/socket";
 import useAllFeedback from "../../customHooks/allFeedbacks";
+import { FeedbackContext } from "../../context/context";
 
 const AllFeedbacks = () => {
 	let isRendered = false;
-	const [socket] = useSocket();
-	const [data, getFeedbacks] = useAllFeedback();
+	// const [socket] = useSocket();
+	const { sortBy, socket } = useContext(FeedbackContext);
+	const [data, getFeedbacks, updateData] = useAllFeedback();
 
 	useEffect(() => {
 		if (socket) {
 			isRendered = true;
-			if (!data.length) getFeedbacks();
+			if (!data.length) getFeedbacks(sortBy);
 
-			socket.on("getFeed", (data) => {
-				console.log('getFeed')
-				// setAllFeedbacks(data)
-				getFeedbacks()
-			})
-			socket.on("update", (data) => {
-				console.log('update')
-				// setAllFeedbacks(data);
-				getFeedbacks()
+			socket.on("update", () => {
+				getFeedbacks(sortBy)
 			})
 
 			socket.on("updateComments", () => {
-				getFeedbacks();
+				getFeedbacks(sortBy);
 			})
 
 			return () => {
@@ -38,7 +33,7 @@ const AllFeedbacks = () => {
 			}
 
 		}
-	}, [socket]);
+	}, [socket, sortBy]);
 
 
 	return (

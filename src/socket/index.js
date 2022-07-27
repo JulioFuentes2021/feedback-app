@@ -22,9 +22,6 @@ export const connectionSocket = async () => {
 
 export const sockets = await connectionSocket();
 
-// export const socket = io("http://localhost:5000");
-
-
 export const Test = () => {
     socket.emit('test', 'Julio Fuentes', (response) => {
         console.log('Status: ', response.status)
@@ -33,7 +30,6 @@ export const Test = () => {
 
 export const addUpvoteSocket = (callback) => {
     socket.emit('addUpvote', callback())
-    // testingBackendEmitter()
 }
 
 export const testingBackendEmitter = () => {

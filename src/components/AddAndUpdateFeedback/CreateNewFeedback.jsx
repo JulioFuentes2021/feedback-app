@@ -2,10 +2,12 @@ import React, { useRef, useState, useContext, useEffect } from "react";
 import Back from "@Utilities/Back";
 import { useParams } from 'react-router-dom';
 import useSocket from "../../customHooks/socket";
+import { FeedbackContext } from "../../context/context";
 
 const CreateNewFeedback = props => {
 
-	const [socket] = useSocket();
+	const { socket } = useContext(FeedbackContext);
+	// const [socket] = useSocket();
 	const [title, setTitle] = useState();
 	const [feature, setFeature] = useState('feature');
 	const [description, setDescription] = useState();

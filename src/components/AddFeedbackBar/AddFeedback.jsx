@@ -5,13 +5,14 @@ import { useDispatch } from "react-redux";
 import { increment } from "@redux/slices/test";
 import { FeedbackContext } from "../../context/context";
 import useSocket from "../../customHooks/socket";
+// const 
 
 const AddFeedback = () => {
 	const dispatch = useDispatch();
 	const [suggestions, setSuggestions] = useState();
 	const sortOptions = useRef(null);
-	const { setSortBy } = useContext(FeedbackContext);
-	const { socket } = useSocket();
+	const { setSortBy, socket } = useContext(FeedbackContext);
+	// const { socket } = useSocket();
 
 	useEffect(() => {
 		if (socket) {
@@ -24,6 +25,7 @@ const AddFeedback = () => {
 				socket.off("suggestions")
 			}
 		}
+		// }, [socket])
 	}, [socket])
 
 	const changeFeedbackSort = () => {
@@ -43,10 +45,11 @@ const AddFeedback = () => {
 				<div className="mr-4">
 					<span className="text-gray-400">Sort by : </span>
 					<select
-						onClick={() => dispatch(increment())}
+						// onClick={() => dispatch(increment())}
 						name="sort"
 						id="options"
 						ref={sortOptions}
+						// value={sortOptions?.current?.value}
 						onChange={changeFeedbackSort}
 						className="bg-gray-800 font-semibold outline-none"
 					>

@@ -7,6 +7,7 @@ import FeedbackCard from "../components/FeedbackCard/FeedbackCard";
 import { useParams } from "react-router-dom";
 import Back from '@Utilities/Back';
 import useSocket from "../customHooks/socket";
+import { FeedbackContext } from "../context/context";
 
 const Comment = () => {
     const { id } = useParams();
@@ -14,7 +15,8 @@ const Comment = () => {
     const [reply, setReply] = useState(false);
     const [replyId, setReplyId] = useState();
     const [mail, setMail] = useState();
-    const [socket] = useSocket();
+    const { socket } = useContext(FeedbackContext);
+    // const [socket] = useSocket();
 
     useEffect(() => {
         const getComments = async commentId => {
@@ -35,9 +37,9 @@ const Comment = () => {
                 getComments();
             })
 
-            socket.on("justUpvote", () => {
-                getComments();
-            })
+            // socket.on("justUpvote", () => {
+            //     getComments();
+            // })
         }
     }, [socket]);
 

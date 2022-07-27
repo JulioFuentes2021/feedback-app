@@ -6,10 +6,13 @@ const setAllFeedbacks = () => {
     const [data, setData] = useState([]);
     const { sortBy } = useContext(FeedbackContext)
 
-    const getFeedbacks = async () => {
+    const getFeedbacks = async (t) => {
         try {
-            const data = await axios.get(`http://localhost:5000/feedback/${sortBy || 'all'}`);
+            // console.log(`http://localhost:5000/feedback${t}`)
+            console.log('SORTBY ', sortBy)
+            const data = await axios.get(`http://localhost:5000/feedback${t || sortBy}`);
             setData(data.data);
+            console.log('Ejecutandose')
 
         } catch (error) {
             console.log('Aqui esta el error')
@@ -17,11 +20,16 @@ const setAllFeedbacks = () => {
         }
     }
 
+    const updateData = (newData) => {
+        setData(newData);
+    };
+
     useEffect(() => {
+        console.log('ajaja', sortBy)
         getFeedbacks()
     }, [sortBy]);
 
-    return [data, getFeedbacks]
+    return [data, getFeedbacks, updateData]
 }
 
 export default setAllFeedbacks

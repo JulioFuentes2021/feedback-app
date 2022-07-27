@@ -8,9 +8,10 @@ import useSocket from '../customHooks/socket';
 const Index = () => {
 	const [socket, setConnection] = useSocket();
 
-	if (!socket) {
-		setConnection();
-	}
+	// if (!socket) {
+	// 	console.log('Set connection')
+	// 	setConnection();
+	// }
 
 	return (
 		<div className="xl:grid xl:grid-cols-4 justify-between lg:p-6 gap-5">

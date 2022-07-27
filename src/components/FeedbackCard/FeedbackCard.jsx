@@ -6,10 +6,12 @@ import useSocket from "../../customHooks/socket";
 
 const FeedbackCard = props => {
 
-	const { socket } = useContext(FeedbackContext)
+	const { sortBy, socket } = useContext(FeedbackContext);
+	// const { socket } = useContext(FeedbackContext)
+	// const [socket] = useSocket();
 
 	const increaseUpvoteCount = async () => {
-		socket.emit("test", { id: props.id })
+		socket.emit("test", { id: props.id, sortBy })
 	}
 
 
