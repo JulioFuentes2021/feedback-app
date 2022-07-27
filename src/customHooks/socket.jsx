@@ -8,7 +8,7 @@ const useSocket = () => {
     const { socket, setSocket } = useContext(FeedbackContext);
     const setConnection = async () => {
         try {
-            const response = await fetch('http://localhost:5000/refresh', { credentials: 'include' })
+            const response = await fetch('http://localhost:5000/api/v1/refresh', { credentials: 'include' })
             const { token } = await response.json()
 
             const socket2 = io.connect("http://localhost:5000", {
