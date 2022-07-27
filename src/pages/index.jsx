@@ -6,7 +6,7 @@ import Status from "@Status/Status";
 import useSocket from '../customHooks/socket';
 
 const Index = () => {
-	const [socket, setConnection] = useSocket();
+	// const [socket, setConnection] = useSocket();
 
 	// if (!socket) {
 	// 	console.log('Set connection')
@@ -20,7 +20,7 @@ const Index = () => {
 				<MenuMobile />
 			</div>
 			<div className="col-span-3">
-				<AddFeedback socket={socket} />
+				<AddFeedback />
 				<article>
 					<AllFeedbacks />
 				</article>

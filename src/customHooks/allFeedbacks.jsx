@@ -8,11 +8,9 @@ const setAllFeedbacks = () => {
 
     const getFeedbacks = async (t) => {
         try {
-            // console.log(`http://localhost:5000/feedback${t}`)
-            console.log('SORTBY ', sortBy)
             const data = await axios.get(`http://localhost:5000/feedback${t || sortBy}`);
             setData(data.data);
-            console.log('Ejecutandose')
+
 
         } catch (error) {
             console.log('Aqui esta el error')
@@ -25,7 +23,6 @@ const setAllFeedbacks = () => {
     };
 
     useEffect(() => {
-        console.log('ajaja', sortBy)
         getFeedbacks()
     }, [sortBy]);
 
