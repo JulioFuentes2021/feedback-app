@@ -30,13 +30,16 @@ const CreateNewFeedback = props => {
 		try {
 			e.preventDefault();
 			const form = e.target;
+			console.log(form)
 			socket && socket.emit('addFeedback', {
 				title,
 				feature,
 				description,
 				id
 			})
-			form.reset();
+			setTitle("");
+			setDescription("");
+			setFeature("");
 		} catch (error) {
 			console.log('Feedback failed!!', error)
 		}
@@ -102,7 +105,7 @@ const CreateNewFeedback = props => {
 						id=""
 						className="h-12 px-4 bg-gray-300 outline-none"
 						onChange={(e) => editFeedback(e, setFeature)}
-					// value={feature}
+						value={feature}
 					>
 						<option value="feature" className="">
 							Feature
