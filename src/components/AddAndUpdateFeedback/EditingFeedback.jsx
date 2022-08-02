@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import CreateNewFeedback from "./CreateNewFeedback";
 import useSocket from "../../customHooks/socket";
 import { Link } from 'react-router-dom';
+import { FeedbackContext } from "../../context/context";
 
 const EditingFeedback = () => {
 	const [error, setError] = useState({ state: false, message: '' });
-	const [socket] = useSocket();
+	// const [socket] = useSocket();
+	const { socket } = useContext(FeedbackContext)
 
 	useEffect(() => {
 		socket.on('editFail', data => {

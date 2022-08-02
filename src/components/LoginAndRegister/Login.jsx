@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom";
 import FormContainer from "./FormContainer";
 import Form from "./Form";
 import { FeedbackContext } from "../../context/context";
+import { io } from "socket.io-client";
 
 const Login = () => {
     const [handleForm, setHandleForm] = useState(false);
     const [error, setError] = useState(false);
     const navigate = useNavigate();
-    const context = useContext(FeedbackContext);
+    const { setSocket } = useContext(FeedbackContext);
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -18,8 +19,8 @@ const Login = () => {
         console.log(form.password.value);
 
         try {
-            const response = await fetch('http://localhost:5000/api/v1/refresh', { credentials: 'include' })
-            const { token } = await response.json()
+            // const response = await fetch('http://localhost:5000/api/v1/refresh', { credentials: 'include' })
+            // const { token } = await response.json()
 
 
             await login({
@@ -30,6 +31,18 @@ const Login = () => {
                 },
             })
             form.reset();
+
+            const response = await fetch('http://localhost:5000/api/v1/refresh', { credentials: 'include' })
+            const { token } = await response.json()
+
+            const socket2 = io.connect("http://localhost:5000", {
+                extraHeaders: {
+                    Authorization: `Bearer ${token}`
+                },
+            });
+
+            setSocket(socket2)
+
             navigate('/feedback-app/index')
         } catch (error) {
             console.log('Error desde login', error)
