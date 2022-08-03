@@ -40,6 +40,7 @@ const CreateNewFeedback = props => {
 			setTitle("");
 			setDescription("");
 			setFeature("");
+			setCharacters(0)
 		} catch (error) {
 			console.log('Feedback failed!!', error)
 		}
@@ -57,9 +58,10 @@ const CreateNewFeedback = props => {
 
 	const feedbackDetail = useRef()
 
-	const [characters, setCharacters] = useState(0)
+	const [characters, setCharacters] = useState(250)
 
 	const handleChange = (e) => {
+		console.log(feedbackDetail.current.value.length)
 		setCharacters(250 - feedbackDetail.current.value.length)
 		setDescription(e.target.value)
 	}
@@ -132,7 +134,7 @@ const CreateNewFeedback = props => {
 						placeholder=""
 						className="bg-gray-300 h-32 outline-none p-4 text-black resize-none"
 					></textarea>
-					<span className="my-3">{characters < 1 ? 250 : characters} characters left</span>
+					<span className="my-3">{characters} characters left</span>
 				</section>
 				<section className="flex flex-col items-center sm:flex-row justify-between gap-4">
 					<button
