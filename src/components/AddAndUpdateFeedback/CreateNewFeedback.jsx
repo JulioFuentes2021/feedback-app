@@ -14,7 +14,7 @@ const CreateNewFeedback = props => {
 	const { id } = useParams();
 
 	const getFeedbackForEdit = async () => {
-		const data = await fetch(`http://localhost:5000/api/v1/feedback/${id}`)
+		const data = await fetch(`${import.meta.env.VITE_URL}/feedback/${id}`)
 		const response = await data.json()
 		console.log(response)
 		setTitle(response[0].title)

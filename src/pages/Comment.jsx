@@ -21,7 +21,7 @@ const Comment = () => {
     useEffect(() => {
         const getComments = async commentId => {
             const response = await fetch(
-                `http://localhost:5000/api/v1/feedback/comment/${id}`
+                `${import.meta.env.VITE_URL}/feedback/comment/${id}`
             );
             const data = await response.json();
             setFeedback(data[0]);

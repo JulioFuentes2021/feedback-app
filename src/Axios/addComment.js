@@ -2,7 +2,7 @@ import axios from "axios";
 
 const instance = axios.create({
     method: "POST",
-    baseURL: "http://localhost:5000/api/v1/feedback/comment/add",
+    baseURL: `${import.meta.env.VITE_URL}/feedback/comment/add`,
 });
 
 export default instance;

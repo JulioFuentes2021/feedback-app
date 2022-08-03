@@ -5,7 +5,7 @@ const Form = ({ handleSubmit, error, isSignIn, formName }) => {
         <form
             className={`w-full m-auto flex flex-col items-center bg-gray-800 text-white p-4 sticky z-50`}
             method="post"
-            action="http://localhost:8000/sign-in"
+            action={`${URL}/sign-in`}
             autoComplete="off"
             onSubmit={handleSubmit}
         >

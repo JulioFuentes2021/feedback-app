@@ -32,7 +32,7 @@ const Login = () => {
             })
             form.reset();
 
-            const response = await fetch('http://localhost:5000/api/v1/refresh', { credentials: 'include' })
+            const response = await fetch(`${import.meta.env.VITE_URL}/refresh`, { credentials: 'include' })
             const { token } = await response.json()
 
             const socket2 = io.connect("http://localhost:5000", {
