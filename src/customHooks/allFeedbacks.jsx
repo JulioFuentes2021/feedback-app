@@ -4,13 +4,13 @@ import { FeedbackContext } from '../context/context';
 
 const setAllFeedbacks = () => {
     const [data, setData] = useState([]);
-    const { sortBy } = useContext(FeedbackContext)
+    const { sortBy, setSuggestions } = useContext(FeedbackContext)
 
     const getFeedbacks = async (t) => {
         try {
             const data = await axios.get(`${import.meta.env.VITE_URL}/feedback${t || sortBy}`);
             setData(data.data);
-
+            setSuggestions(data.data.length)
 
         } catch (error) {
             console.log('Aqui esta el error')

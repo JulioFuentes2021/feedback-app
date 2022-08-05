@@ -28,8 +28,6 @@ const AllFeedbacks = () => {
 			return () => {
 				socket.off('update');
 				socket.off('getFeed');
-				socket.off('get');
-				socket.off('updateComments');
 			}
 
 		}

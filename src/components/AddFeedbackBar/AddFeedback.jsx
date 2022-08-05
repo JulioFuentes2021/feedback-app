@@ -9,24 +9,26 @@ import useSocket from "../../customHooks/socket";
 
 const AddFeedback = () => {
 	const dispatch = useDispatch();
-	const [suggestions, setSuggestions] = useState();
+	// const [suggestions, setSuggestions] = useState();
 	const sortOptions = useRef(null);
-	const { setSortBy, socket } = useContext(FeedbackContext);
+	const { setSortBy, socket, suggestions } = useContext(FeedbackContext);
 	// const { socket } = useSocket();
 
-	useEffect(() => {
-		if (socket) {
-			console.log('Suggestions')
-			socket.on("suggestions", (data) => {
-				setSuggestions(data);
-			})
+	// useEffect(() => {
+	// 	console.log(socket)
+	// 	if (socket) {
+	// 		console.log('Suggestions')
+	// 		socket.on("suggestions", (data) => {
+	// 			console.log(data)
+	// 			setSuggestions(data);
+	// 		})
 
-			return () => {
-				socket.off("suggestions")
-			}
-		}
-		// }, [socket])
-	}, [socket])
+	// 		return () => {
+	// 			socket.off("suggestions")
+	// 		}
+	// 	}
+	// 	// }, [socket])
+	// }, [socket])
 
 	const changeFeedbackSort = () => {
 		console.log(sortOptions.current.value)

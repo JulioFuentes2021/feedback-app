@@ -39,7 +39,7 @@ const CreateNewFeedback = props => {
 			})
 			setTitle("");
 			setDescription("");
-			setFeature("");
+			setFeature("feature");
 			setCharacters(0)
 		} catch (error) {
 			console.log('Feedback failed!!', error)
@@ -61,7 +61,6 @@ const CreateNewFeedback = props => {
 	const [characters, setCharacters] = useState(250)
 
 	const handleChange = (e) => {
-		console.log(feedbackDetail.current.value.length)
 		setCharacters(250 - feedbackDetail.current.value.length)
 		setDescription(e.target.value)
 	}

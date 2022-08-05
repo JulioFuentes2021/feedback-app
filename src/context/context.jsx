@@ -7,6 +7,7 @@ const context = ({ children }) => {
 
     const [socket, setSocket] = useState(null);
     const [sortBy, setSortBy] = useState("/all");
+    const [suggestions, setSuggestions] = useState(0)
 
     useEffect(() => {
         const setConnection = async () => {
@@ -30,7 +31,7 @@ const context = ({ children }) => {
     }, [])
 
     return (
-        <FeedbackContext.Provider value={{ socket, setSocket, sortBy, setSortBy }}>
+        <FeedbackContext.Provider value={{ socket, setSocket, sortBy, setSortBy, suggestions, setSuggestions }}>
             {children}
         </FeedbackContext.Provider>
     );
